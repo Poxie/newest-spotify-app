@@ -1,6 +1,8 @@
 :root {
   --spacing-primary: 25px;
   --spacing-secondary: 15px;
+  --border-radius-primary: 12px;
+  --border-radius-primary: 8px;
   --background-primary: #fff;
   --background-secondary: #F6F6F6;
   --background-tertiary: #EAEAEA;
@@ -33,4 +35,10 @@ a {
 ul {
   list-style: none;
   padding: 0;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  border: none;
 }
