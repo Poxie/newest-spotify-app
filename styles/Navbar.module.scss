@@ -1,8 +1,10 @@
 .container {
     width: var(--width-main);
     max-width: var(--width-main-max);
-    margin: 0 auto;
     padding: var(--spacing-secondary) 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .content {
     display: flex;
