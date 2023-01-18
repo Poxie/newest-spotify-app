@@ -1,4 +1,6 @@
 .container {
+    --text-primary: var(--text-primary);
+    --text-secondary: var(--text-secondary);
     width: var(--width-main);
     max-width: var(--width-main-max);
     padding: var(--spacing-secondary) 0;
@@ -6,6 +8,12 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000000;
+    color: var(--text-primary);
+
+    &.light {
+        --text-primary: var(--text-light-primary);
+        --text-secondary: var(--text-light-secondary);
+    }
 }
 .content {
     display: flex;
