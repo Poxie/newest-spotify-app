@@ -18,6 +18,11 @@
         width: 32px;
     }
 }
+.right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-secondary);
+}
 .tabs {
     display: flex;
     gap: var(--spacing-secondary);
