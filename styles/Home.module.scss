@@ -17,6 +17,16 @@
         font-weight: 800;
         color: var(--text-light-primary);
     }
+    p {
+        font-size: 18px;
+        width: 80%;
+        color: var(--text-light-primary);
+        margin: var(--spacing-primary) 0;
+    }
+    .buttons {
+        display: flex;
+        gap: var(--spacing-secondary);
+    }
 }
 .background-image {
     position: absolute;
