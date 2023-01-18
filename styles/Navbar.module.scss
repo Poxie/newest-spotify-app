@@ -1,5 +1,18 @@
+.container {
+    width: var(--width-main);
+    max-width: var(--width-main-max);
+    margin: 0 auto;
+    padding: var(--spacing-secondary) 0;
+}
+.content {
+    display: flex;
+}
 .header-name {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    svg {
+        width: 32px;
+    }
 }

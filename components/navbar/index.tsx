@@ -1,16 +1,22 @@
 import styles from '../../styles/Navbar.module.scss';
 import { SiteIcon } from "@/assets/icons/SiteIcon";
+import Link from 'next/link';
 
 export default function Navbar() {
     return(
-        <header>
-            <nav>
-                <div className={styles['header-name']}>
+        <header className={styles['container']}>
+            <nav className={styles['content']}>
+                <Link 
+                    className={styles['header-name']}
+                    href={'/'}
+                >
+                    <>
                     <SiteIcon />
                     <span>
                         {process.env.NEXT_PUBLIC_WEBSITE_NAME}
                     </span>
-                </div>
+                    </>
+                </Link>
             </nav>
         </header>
     )
