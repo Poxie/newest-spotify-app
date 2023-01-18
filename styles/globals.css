@@ -43,3 +43,10 @@ button {
   color: inherit;
   border: none;
 }
+
+.highlighted {
+  color: var(--color-primary);
+}
+.underlined {
+  text-decoration: underline;
+}
