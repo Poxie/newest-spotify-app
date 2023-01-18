@@ -44,9 +44,7 @@ export default function Button({ children, style, onClick, href, ariaLabel, targ
                 {...linkProps}
                 {...props}
             >
-                <a className={className}>
-                    {children}
-                </a>
+                {children}
             </Link>
         )
     ) : (
