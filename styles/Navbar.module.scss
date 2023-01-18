@@ -18,3 +18,15 @@
         width: 32px;
     }
 }
+.tabs {
+    display: flex;
+    gap: var(--spacing-secondary);
+    color: var(--text-secondary);
+    font-size: 14px;
+
+    a {
+        &:hover, &.active {
+            color: var(--text-primary);
+        }
+    }
+}
