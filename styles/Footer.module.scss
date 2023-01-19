@@ -1,0 +1,14 @@
+.container {
+    padding: 40px 0;
+    background-color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--color-primary);
+
+    span {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-light-primary);
+    }
+}
