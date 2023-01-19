@@ -1,3 +1,7 @@
+.container {
+    --section-padding: 20vh;
+}
+
 // Main
 .main {
     height: 85vh;
@@ -43,7 +47,6 @@
 
 // Tiles
 .tile-section {
-    --section-padding: 20vh;
     padding: var(--section-padding) 0;
     position: relative;
 }
@@ -105,4 +108,31 @@
         left: 0;
         background: linear-gradient(90deg, rgba(var(--background-secondary-rgb), 1) 0%, rgba(var(--background-secondary-rgb), 0) 100%);
     }
+}
+
+
+// Contact
+.contact-section {
+    padding: var(--section-padding) 0;
+    background-color: var(--color-secondary);
+    color: var(--text-light-primary);
+    position: relative;
+}
+.contact-content {
+    width: 625px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+        font-size: 32px;
+        margin-bottom: var(--spacing-primary);
+    }
+    button {
+        margin: 0 auto;
+        margin-top: var(--spacing-primary);
+    }
+}
+.contact-input {
+    margin-bottom: var(--spacing-secondary);
 }
