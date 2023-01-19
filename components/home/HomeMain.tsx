@@ -4,9 +4,9 @@ import { HomeMainText } from './HomeMainText';
 
 export const HomeMain = () => {
     return(
-        <div className={styles['main']}>
+        <section className={styles['main']}>
             <HomeMainStyling />
             <HomeMainText />
-        </div>
+        </section>
     )
 }
