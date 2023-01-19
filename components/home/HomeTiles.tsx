@@ -21,7 +21,7 @@ export const HomeTiles = () => {
                     ))}
                 </ul>
             </div>
-            <WaveIcon className={styles['wave-icon']} />
+            <WaveIcon />
         </section>
     )
 }

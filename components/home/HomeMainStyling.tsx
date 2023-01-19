@@ -12,9 +12,7 @@ export const HomeMainStyling = () => {
             priority
             fill
         />
-        <WaveIcon 
-            className={styles['wave-icon']}
-        />
+        <WaveIcon />
         </>
     )
 }
