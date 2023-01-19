@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import React, { AnchorHTMLAttributes } from 'react';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
 
-export default function Button({ children, style, onClick, href, ariaLabel, target, external=false, className='', type='default' }: {
+export default function Button({ children, style, onClick, href, ariaLabel, target, external=false, className='', type='default', buttonType='button' }: {
     children: any;
     type?: 'default' | 'secondary' | 'hollow' | 'transparent';
     className?: string;
@@ -12,6 +12,7 @@ export default function Button({ children, style, onClick, href, ariaLabel, targ
     external?: boolean;
     ariaLabel?: string;
     target?: AnchorHTMLAttributes<''>['target'];
+    buttonType?: ButtonHTMLAttributes<''>['type']
 }) {
     className = [
         className,
@@ -23,6 +24,7 @@ export default function Button({ children, style, onClick, href, ariaLabel, targ
         className,
         style,
         onClick,
+        type: buttonType,
         'aria-label': ariaLabel
     }
     const linkProps = {
