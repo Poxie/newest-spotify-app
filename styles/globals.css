@@ -1,8 +1,8 @@
 :root {
   --spacing-primary: 25px;
   --spacing-secondary: 15px;
-  --border-radius-primary: 12px;
   --border-radius-primary: 8px;
+  --border-radius-secondary: 5px;
   --background-primary: #fff;
   --background-secondary: #F6F6F6;
   --background-tertiary: #dbdbdb;
@@ -15,7 +15,7 @@
   --text-light-secondary: #CCCCCC;
   --width-main: 1100px;
   --width-main-max: 90%;
-  --navbar-height: 44px;
+  --navbar-height: 74px;
 }
 
 * {
