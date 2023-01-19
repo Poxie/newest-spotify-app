@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    label {
+        display: block;
+        font-size: 14px;
+        color: var(--text-secondary);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 18px;
+        pointer-events: none;
+        transition: margin-top .15s, font-size .15s;
+        opacity: .8;
+    }
+    input, textarea {
+        font-size: 14px;
+        padding: 32px 48px 16px 16px;
+        height: 48px;
+        outline: none;
+        background-color: var(--background-secondary);
+        border: none;
+        color: var(--text-primary);
+        border-radius: var(--border-radius-primary);
+        font-family: inherit;
+
+        &:focus, &:valid {
+            &+label {
+                margin-top: -.67rem;
+                left: 16px;
+                font-size: 11px;
+            }
+        }
+    }
+    textarea {
+        min-height: 120px;
+        padding-top: 25px;
+        resize: vertical;
+
+        &+label {
+            transform: none;
+            top: 16px;
+        }
+    }
+}
