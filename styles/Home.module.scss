@@ -36,13 +36,16 @@
 }
 .wave-icon {
     position: absolute;
-    bottom: -5vh;
+    bottom: -8vh;
 }
 
 // Tiles
-.tiles {
-    --section-padding: 100px;
+.tile-section {
+    --section-padding: 20vh;
     padding: var(--section-padding) 0;
+    position: relative;
+}
+.tiles {
     width: var(--width-main);
     max-width: var(--width-main-max);
     margin: 0 auto;
