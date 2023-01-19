@@ -25,6 +25,7 @@ body {
   margin: 0;
   background-color: var(--background-primary);
   color: var(--text-primary);
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
