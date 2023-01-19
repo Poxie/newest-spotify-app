@@ -29,6 +29,7 @@
     }
     &.secondary {
         background-color: var(--background-secondary);
+        color: var(--text-secondary);
 
         svg {
             fill: var(--text-primary);
