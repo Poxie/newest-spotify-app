@@ -35,7 +35,6 @@ export const HomeContact = () => {
                     </Button>
                 </form>
             </div>
-            <WaveIcon />
         </section>
     )
 }
