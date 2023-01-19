@@ -3,7 +3,7 @@ export const WaveIcon = () => (
         style={{
             overflow: 'hidden',
             position: 'absolute',
-            bottom: '-7vh',
+            bottom: '-8vh',
             zIndex: 1,
             maxWidth: '100%'
         }}
