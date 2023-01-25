@@ -5,9 +5,12 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { authReducer } from './auth/reducer';
 import { AuthState } from './auth/types';
+import { topListsReducer } from './top-lists/reducer';
+import { TopListsState } from './top-lists/types';
 
 const combinedReducers = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    topLists: topListsReducer
 });
 
 const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) => {
@@ -49,6 +52,7 @@ export type RootState = {
     readonly [$CombinedState]?: undefined;
 } & {
     auth: AuthState;
+    topLists: TopListsState;
 }
 
 
