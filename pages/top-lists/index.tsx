@@ -8,15 +8,16 @@ import { Album, PlayList } from "@/types";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import TopListsPage from '../../components/top-lists';
 
 export default function TopLists() {
   const { get } = useAuth();
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectAuthToken);
   const query = useRouter().query as { country?: string };
-  let country = query.country;
+  let country = query.country || 'Global';
   
-  const hasTracksLoaded = useAppSelector(state => selectTracksFetched(state, country || 'Global'));
+  const hasTracksLoaded = useAppSelector(state => selectTracksFetched(state, country));
 
   // Function to fetch a country's top list
   const getCountryTopLists = async (country: string) => {
@@ -45,8 +46,6 @@ export default function TopLists() {
   // On country change, fetch new tracks
   useEffect(() => {
     if(hasTracksLoaded) return;
-
-    if(!country) country = 'Global';
     getCountryTopLists(country);
   }, [country, hasTracksLoaded]);
 
@@ -58,7 +57,7 @@ export default function TopLists() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        toplists {token}
+        <TopListsPage />
       </main>
     </>
   )
