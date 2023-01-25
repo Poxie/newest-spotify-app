@@ -1,0 +1,1 @@
+export const SET_TOP_LISTS = 'SET_TOP_LISTS';
