@@ -1,3 +1,20 @@
+export type PlayList = {
+    collaborative: boolean;
+    description: string;
+    external_urls: {
+        spotify: string;
+    }
+    href: string;
+    id: string;
+    images: Image[];
+    name: string;
+    owner: Artist;
+    snapshot_id: string;
+    tracks: {href: string, total: number};
+    type: string;
+    uri: string;
+}
+
 export type Album = {
     album_type: string;
     artists: Artist[];
@@ -26,7 +43,7 @@ export type Album = {
 export type Artist = {
     external_urls: {
         spotify: string;
-    },
+    };
     href: string;
     id: string;
     name: string;
@@ -35,7 +52,7 @@ export type Artist = {
 }
 
 export type Image = {
-    height: number;,
+    height: number;
     url: string;
     width: number;
-},
+}
