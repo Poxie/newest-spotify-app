@@ -1,0 +1,16 @@
+.main {
+    width: var(--width-main);
+    max-width: var(--width-main-max);
+    margin: 0 auto;
+    padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 var(--spacing-primary);
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+        font-size: 35px;
+        margin: 0;
+    }
+}
