@@ -3,6 +3,7 @@ import { setAuthToken } from "@/redux/auth/actions";
 import { selectAuthToken } from "@/redux/auth/selectors";
 import { RootState, useAppDispatch, useAppSelector, wrapper } from "@/redux/store";
 import { setTopLists } from "@/redux/top-lists/actions";
+import { selectTracksFetched } from "@/redux/top-lists/selectors";
 import { Album, PlayList } from "@/types";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -14,6 +15,8 @@ export default function TopLists() {
   const token = useAppSelector(selectAuthToken);
   const query = useRouter().query as { country?: string };
   let country = query.country;
+  
+  const hasTracksLoaded = useAppSelector(state => selectTracksFetched(state, country || 'Global'));
 
   // Function to fetch a country's top list
   const getCountryTopLists = async (country: string) => {
@@ -39,10 +42,13 @@ export default function TopLists() {
     dispatch(setTopLists(country, tracks));
   }
 
+  // On country change, fetch new tracks
   useEffect(() => {
+    if(hasTracksLoaded) return;
+
     if(!country) country = 'Global';
     getCountryTopLists(country);
-  }, [country]);
+  }, [country, hasTracksLoaded]);
 
   return (
     <>
