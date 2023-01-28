@@ -49,6 +49,7 @@
     width: 28px;
     height: 28px;
     border-radius: var(--border-radius-secondary);
+    background-color: var(--background-quaternary);
     overflow: hidden;
     position: relative;
     display: block;
@@ -74,4 +75,14 @@
     a {
         color: var(--text-primary);
     }
+}
+
+.track>.track-text-loading {
+    width: 120px;
+}
+.track-text-loading {
+    width: 80px;
+    height: 18px;
+    background-color: var(--background-quaternary);
+    border-radius: var(--border-radius-secondary);
 }

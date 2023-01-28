@@ -3,12 +3,28 @@ import { Track } from "@/types";
 import Image from 'next/image';
 
 const START_INDEX = 5;
-export const TopListsTrack: React.FC<Track & {
+export const TopListsTrack: React.FC<{
+    track: Track | undefined;
     index: number;
-    loading?: boolean;
-}> = ({ artists, name, uri, album, index, loading }) => {
-    if(loading) return null;
+}> = ({ track, index }) => {
+    // Show loading placeholder
+    if(!track) {
+        return(
+            <li
+                className={styles['track']} 
+                aria-hidden="true"
+            >
+                <div className={styles['track-main']}>
+                    <div className={styles['track-image']} />
+                    <div className={styles['track-text-loading']} />
+                </div>
+                <div className={styles['track-text-loading']} />
+            </li>
+        )
+    };
     
+    const { artists, name, uri, album } = track;
+
     const images = album.images;
     const image = images[2].url;
     return(
