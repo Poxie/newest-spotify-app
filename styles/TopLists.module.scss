@@ -40,9 +40,21 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--spacing-tertiary);
+    animation: animate-in .3s forwards;
+    opacity: 0;
 
     a:hover {
         text-decoration: underline;
+    }
+}
+@keyframes animate-in {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 .track-image {

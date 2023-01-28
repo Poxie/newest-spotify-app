@@ -29,7 +29,8 @@ export const TopListsTracks = () => {
                 {tracks.map((track, index) => (
                     <TopListsTrack 
                         track={track}
-                        index={index}
+                        index={index + START_INDEX}
+                        animateIndex={index + START_INDEX !== visibleTracks ? index % SHOW_COUNT : 10}
                         key={track?.id || index}
                     />
                 ))}

@@ -2,11 +2,12 @@ import styles from '../../styles/TopLists.module.scss';
 import { Track } from "@/types";
 import Image from 'next/image';
 
-const START_INDEX = 5;
+const MAIN_DELAY = .05;
 export const TopListsTrack: React.FC<{
     track: Track | undefined;
     index: number;
-}> = ({ track, index }) => {
+    animateIndex: number;
+}> = ({ track, index, animateIndex }) => {
     // Show loading placeholder
     if(!track) {
         return(
@@ -30,10 +31,15 @@ export const TopListsTrack: React.FC<{
     const images = album.images;
     const image = images[2].url;
     return(
-        <li className={styles['track']}>
+        <li 
+            className={styles['track']}
+            style={{
+                animationDelay: `${MAIN_DELAY * animateIndex}s`
+            }}
+        >
             <div className={styles['track-main']}>
                 <span className={styles['track-index']}>
-                    {index + START_INDEX}
+                    {index}
                 </span>
                 <a 
                     className={styles['track-image']}
