@@ -28,6 +28,12 @@ export default function TopLists() {
       playlists: { items: PlayList[] };
     }>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/search?q=${topListQuery}&type=playlist&limit=1`);
     
+    // Checking if playlist is returned
+    if(!response.playlists.items.length) {
+      // Playlist was not found; not tracks can be displayed
+      return;
+    }
+
     // Getting the track api url
     const tracksURL = response.playlists.items[0].tracks.href;
 
