@@ -4,10 +4,9 @@ import { useState } from 'react';
 import { SearchResults } from './SearchResults';
 import { Artist, Track } from '@/types';
 
-export type SearchResult = Artist | Track;
 export const SearchInput: React.FC<{
     type: 'track' | 'artist';
-    onChange: (result: SearchResult) => void;
+    onChange: (result: Artist | Track) => void;
 }> = ({ type, onChange }) => {
     const [query, setQuery] = useState('');
     const [focus, setFocus] = useState(false);

@@ -1,5 +1,9 @@
+import { ExploreSongsSelectors } from "./ExploreSongsSelectors"
+
 export const ExploreSongs = () => {
     return(
-        <div>songs</div>
+        <>
+        <ExploreSongsSelectors />
+        </>
     )
 }
