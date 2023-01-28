@@ -21,3 +21,57 @@
     gap: var(--spacing-secondary);
     margin-top: var(--spacing-primary);
 }
+
+.tracks {
+    padding: var(--spacing-primary) 0;
+    background-color: var(--background-secondary);
+}
+.track-list {
+    width: var(--width-main);
+    max-width: var(--width-main-max);
+    margin: 0 auto;
+    display: grid;
+    gap: var(--spacing-tertiary);
+}
+.track {
+    padding: var(--spacing-tertiary);
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+.track-image {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--border-radius-secondary);
+    overflow: hidden;
+    position: relative;
+    display: block;
+
+    img {
+        object-fit: cover;
+    }
+}
+.track-main {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-tertiary);
+    font-size: 14px;
+}
+.track-index {
+    width: 20px;
+    text-align: center;
+}
+.track-author {
+    font-size: 13px;
+    color: var(--text-secondary);
+    
+    a {
+        color: var(--text-primary);
+    }
+}
