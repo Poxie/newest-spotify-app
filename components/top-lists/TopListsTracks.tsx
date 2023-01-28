@@ -2,7 +2,7 @@ import { useAppSelector } from '@/redux/store';
 import { selectCountryTracks } from '@/redux/top-lists/selectors';
 import { Track } from '@/types';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../../styles/TopLists.module.scss';
 import Button from '../button';
 import { TopListsTrack } from './TopListsTrack';
@@ -18,6 +18,11 @@ export const TopListsTracks = () => {
 
     // Defining how many tracks to show
     const [visibleTracks, setVisibleTracks] = useState(SHOW_COUNT + START_INDEX);
+
+    // Resetting visible tracks count on country change
+    useEffect(() => {
+        setVisibleTracks(SHOW_COUNT + START_INDEX);
+    }, [country]);
 
     // Method to update visible track count
     const showMore = () => setVisibleTracks(prev => prev + SHOW_COUNT);
