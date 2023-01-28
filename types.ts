@@ -76,6 +76,7 @@ export type Artist = {
     followers: {
         total: number;
     }
+    genres: string[];
 }
 
 export type Image = {
