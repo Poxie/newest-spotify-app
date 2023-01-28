@@ -23,8 +23,10 @@ export const TopListsTrack: React.FC<{
         )
     };
     
+    // Destructuring track properties
     const { artists, name, uri, album } = track;
-
+    
+    // Getting the album cover
     const images = album.images;
     const image = images[2].url;
     return(
