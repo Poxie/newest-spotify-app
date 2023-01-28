@@ -7,10 +7,13 @@ import { authReducer } from './auth/reducer';
 import { AuthState } from './auth/types';
 import { topListsReducer } from './top-lists/reducer';
 import { TopListsState } from './top-lists/types';
+import { ExploreState } from './explore/types';
+import { exploreReducer } from './explore/reducer';
 
 const combinedReducers = combineReducers({
     auth: authReducer,
-    topLists: topListsReducer
+    topLists: topListsReducer,
+    explore: exploreReducer
 });
 
 const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) => {
@@ -54,6 +57,7 @@ export type RootState = {
 } & {
     auth: AuthState;
     topLists: TopListsState;
+    explore: ExploreState;
 }
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
