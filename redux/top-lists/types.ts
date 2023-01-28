@@ -1,7 +1,7 @@
-import { Album } from "@/types"
+import { Track } from "@/types"
 
 export type TopListsState = {
     countries: {
-        [country: string]: Album[] | undefined;
+        [country: string]: Track[] | undefined;
     }
 }
