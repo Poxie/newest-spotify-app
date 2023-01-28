@@ -1,0 +1,12 @@
+.main {
+    width: var(--width-main);
+    max-width: var(--width-main-max);
+    margin: 0 auto;
+    padding: calc(var(--navbar-height) + var(--spacing-primary)) 0 var(--spacing-primary);
+
+    h1 {
+        font-size: 35px;
+        margin: 0;
+        margin-bottom: var(--spacing-primary);
+    }
+}
