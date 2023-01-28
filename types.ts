@@ -71,6 +71,11 @@ export type Artist = {
     name: string;
     type: string;
     uri: string;
+    images: Image[];
+    popularity: number;
+    followers: {
+        total: number;
+    }
 }
 
 export type Image = {
