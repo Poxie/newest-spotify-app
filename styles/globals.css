@@ -1,6 +1,7 @@
 :root {
   --spacing-primary: 25px;
   --spacing-secondary: 15px;
+  --spacing-tertiary: 8px;
   --border-radius-primary: 8px;
   --border-radius-secondary: 5px;
   --player-track-background: #e2e2e2;
