@@ -14,3 +14,10 @@
         margin: 0;
     }
 }
+.header-tracks {
+    --row-count: 4;
+    display: grid;
+    grid-template-columns: repeat(var(--row-count), 1fr);
+    gap: var(--spacing-secondary);
+    margin-top: var(--spacing-primary);
+}
