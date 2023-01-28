@@ -34,7 +34,7 @@ export const TopListsTracks = () => {
                     />
                 ))}
             </ul>
-            {visibleTracks < (allTracks?.length || Infinity) && (
+            {visibleTracks < (allTracks?.length || -Infinity) && (
                 <Button
                     onClick={showMore}
                     className={styles['track-button']}
