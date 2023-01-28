@@ -43,9 +43,7 @@ function configureStore() {
 
     return store;
 }
-
 export const wrapper = createWrapper(configureStore);
-const store = configureStore();
 
 // Types based on store
 export type RootState = {
@@ -55,9 +53,8 @@ export type RootState = {
     topLists: TopListsState;
 }
 
-
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = ReturnType<typeof configureStore>['dispatch'];
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 type DispatchFunc = () => AppDispatch;
