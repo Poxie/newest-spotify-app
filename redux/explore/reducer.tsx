@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { createReducer, updateObject } from "../utils";
-import { SET_EXPLORE_ARTIST, SET_EXPLORE_SONG } from "./constants";
+import { SET_EXPLORE_ARTIST, SET_EXPLORE_RECOMMENDATIONS, SET_EXPLORE_SONG } from "./constants";
 import { ExploreState } from "./types";
 
 // Creating reducer actions
@@ -20,6 +20,13 @@ const setExploreArtist: ReducerAction = (state, action) => {
     })
 }
 
+const setExploreRecommendations: ReducerAction = (state, action) => {
+    return updateObject(state, {
+        ...state,
+        recommendations: action.payload
+    })
+}
+
 // Creating reducer
 export const exploreReducer = createReducer({
     artist: null,
@@ -27,5 +34,6 @@ export const exploreReducer = createReducer({
     recommendations: []
 }, {
     [SET_EXPLORE_SONG]: setExploreSong,
-    [SET_EXPLORE_ARTIST]: setExploreArtist
+    [SET_EXPLORE_ARTIST]: setExploreArtist,
+    [SET_EXPLORE_RECOMMENDATIONS]: setExploreRecommendations
 })
