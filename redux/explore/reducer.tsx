@@ -31,7 +31,7 @@ const setExploreRecommendations: ReducerAction = (state, action) => {
 export const exploreReducer = createReducer({
     artist: null,
     song: null,
-    recommendations: []
+    recommendations: null
 }, {
     [SET_EXPLORE_SONG]: setExploreSong,
     [SET_EXPLORE_ARTIST]: setExploreArtist,
