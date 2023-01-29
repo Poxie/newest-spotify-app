@@ -1,10 +1,10 @@
 import styles from '../../styles/Explore.module.scss';
 import { useAuth } from "@/contexts/auth/AuthProvider";
-import { setExploreRecommendations } from "@/redux/explore/actions";
+import { addExploreRecommendations, setExploreRecommendations } from "@/redux/explore/actions";
 import { selectExploreArtist, selectExploreRecommendations, selectExploreSong } from "@/redux/explore/selectors"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Track } from "@/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Player } from "../player";
 
 const PLACEHOLDER_COUNT = 12;
@@ -15,6 +15,8 @@ export const ExploreSongsResults = () => {
     const artist = useAppSelector(selectExploreArtist);
     const results = useAppSelector(selectExploreRecommendations);
     const [loading, setLoading] = useState(false);
+    const list = useRef<HTMLDivElement>(null);
+    const fetching = useRef(false);
     
     // Function to fetch recommendations
     const getSongRecommendations = async () => {
@@ -41,11 +43,34 @@ export const ExploreSongsResults = () => {
         if(!song || !artist) return;
 
         setLoading(true);
+        dispatch(setExploreRecommendations([]));
         getSongRecommendations()
             .then(tracks => {
                 dispatch(setExploreRecommendations(tracks));
                 setLoading(false);
             })
+    }, [song?.id, artist?.id]);
+
+    // Showing more recommendations on scroll
+    useEffect(() => {
+        const onScroll = async () => {
+            if(!list.current) return;
+
+            const fromBottom = list.current.getBoundingClientRect().bottom;
+            if(fromBottom - screen.height < screen.height && !fetching.current) {
+                fetching.current = true;
+                setLoading(true);
+
+                const tracks = await getSongRecommendations();
+                dispatch(addExploreRecommendations(tracks));
+                
+                fetching.current = false;
+                setLoading(false);
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
     }, [song?.id, artist?.id]);
 
     if(!results) return null;
@@ -55,7 +80,10 @@ export const ExploreSongsResults = () => {
                 Songs based on <a href={song?.uri}>{song?.name}</a> and <a href={artist?.uri}>{artist?.name}</a>
             </h2>
 
-            <div className={styles['recommendations']}>
+            <div 
+                className={styles['recommendations']}
+                ref={list}
+            >
                 {results.map(result => (
                     <Player 
                         {...result}
