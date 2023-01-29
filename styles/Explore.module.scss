@@ -1,6 +1,7 @@
 .main {
     width: var(--width-main);
     max-width: var(--width-main-max);
+    min-height: calc(100vh - var(--footer-height));
     margin: 0 auto;
     padding: calc(var(--navbar-height) + var(--spacing-primary)) 0 var(--spacing-primary);
 
