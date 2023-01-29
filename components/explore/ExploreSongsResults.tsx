@@ -1,16 +1,20 @@
+import styles from '../../styles/Explore.module.scss';
 import { useAuth } from "@/contexts/auth/AuthProvider";
 import { setExploreRecommendations } from "@/redux/explore/actions";
 import { selectExploreArtist, selectExploreRecommendations, selectExploreSong } from "@/redux/explore/selectors"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Track } from "@/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Player } from "../player";
 
+const PLACEHOLDER_COUNT = 12;
 export const ExploreSongsResults = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
     const song = useAppSelector(selectExploreSong);
     const artist = useAppSelector(selectExploreArtist);
     const results = useAppSelector(selectExploreRecommendations);
+    const [loading, setLoading] = useState(false);
     
     // Function to fetch recommendations
     const getSongRecommendations = async () => {
@@ -36,15 +40,35 @@ export const ExploreSongsResults = () => {
     useEffect(() => {
         if(!song || !artist) return;
 
+        setLoading(true);
         getSongRecommendations()
             .then(tracks => {
                 dispatch(setExploreRecommendations(tracks));
+                setLoading(false);
             })
     }, [song?.id, artist?.id]);
 
+    if(!results) return null;
     return(
         <section>
-            {results.map(result => result.name)}
+            <h2 className={styles['recommendations-header']}>
+                Songs based on <a href={song?.uri}>{song?.name}</a> and <a href={artist?.uri}>{artist?.name}</a>
+            </h2>
+
+            <div className={styles['recommendations']}>
+                {results.map(result => (
+                    <Player 
+                        {...result}
+                        key={result.id}
+                    />
+                ))}
+
+                {loading && (
+                    Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
+                        <Player loading key={key} />
+                    ))
+                )}
+            </div>
         </section>
     )
 }

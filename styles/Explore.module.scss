@@ -52,6 +52,27 @@
     color: var(--text-secondary);
     margin-top: 4px;
 }
+.recommendations {
+    display: grid;
+    gap: var(--spacing-secondary);
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+}
+.recommendations-header {
+    font-weight: 500;
+    border-top: 1px solid var(--background-tertiary);
+    padding-top: var(--spacing-primary);
+    padding-bottom: var(--spacing-secondary);
+    margin: 0;
+    margin-top: var(--spacing-secondary);
+
+    a {
+        font-weight: 700;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
 
 .preview-text-loading {
     background-color: var(--background-tertiary);
