@@ -14,7 +14,7 @@ export const ExploreSongsResults = () => {
     const song = useAppSelector(selectExploreSong);
     const artist = useAppSelector(selectExploreArtist);
     const results = useAppSelector(selectExploreRecommendations);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const list = useRef<HTMLDivElement>(null);
     const fetching = useRef(false);
     
