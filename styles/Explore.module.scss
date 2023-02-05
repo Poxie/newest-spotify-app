@@ -125,6 +125,7 @@
     gap: var(--spacing-secondary);
 }
 .info-card-image {
+    min-width: 150px;
     width: 150px;
     height: 150px;
     border-radius: var(--border-radius-primary);
@@ -197,7 +198,8 @@
     display: block;
 }
 .related-artists {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     gap: var(--spacing-secondary);
     padding: var(--spacing-secondary);
     background-color: var(--background-secondary);
@@ -273,4 +275,23 @@
     width: 16px;
     height: 25px;
     margin-left: auto;
+}
+
+@media (max-width: 800px) {
+    .artists-main {
+        flex-direction: column;
+    }
+    .artist-items {
+        flex-direction: column;
+        gap: unset;
+    }
+}
+@media (max-width: 450px) {
+    .artists-main {
+        .info-card-image {
+            min-width: 100px;
+            width: 100px;
+            height: 100px;
+        }
+    }
 }
