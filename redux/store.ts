@@ -18,8 +18,9 @@ const combinedReducers = combineReducers({
 
 const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) => {
     if(action.type === HYDRATE) {
-        // We don't need to hydrate top lists
+        // We don't need to hydrate these
         delete action.payload.topLists;
+        delete action.payload.explore;
 
         const nextState = {
             ...state,
