@@ -11,10 +11,17 @@
         margin-bottom: var(--spacing-primary);
     }
 }
+.songs-header {
+    display: block;
+    padding: var(--spacing-primary) 0;
+}
 .selectors {
     display: grid;
     gap: var(--spacing-secondary);
-    padding: var(--spacing-primary) 0;
+    padding: var(--spacing-primary);
+    background-color: var(--background-secondary);
+    border: 2px solid var(--background-tertiary);
+    border-radius: var(--border-radius-primary);
 }
 .selector {
     display: flex;
@@ -64,7 +71,7 @@
     padding-top: var(--spacing-primary);
     padding-bottom: var(--spacing-secondary);
     margin: 0;
-    margin-top: var(--spacing-secondary);
+    margin-top: var(--spacing-primary);
 
     a {
         font-weight: 700;
