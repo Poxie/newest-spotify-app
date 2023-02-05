@@ -82,17 +82,12 @@
             text-decoration: underline;
         }
     }
-    .placeholder-artist, .placeholder-song {
+    .recommendation-placeholder-text {
         background-color: var(--background-tertiary);
         border-radius: var(--border-radius-secondary);
         margin: 0 8px;
         height: 30px;
-    }
-    .placeholder-song {
         width: 150px;
-    }
-    .placeholder-artist {
-        width: 240px;
     }
 }
 

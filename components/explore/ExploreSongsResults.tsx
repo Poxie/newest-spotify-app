@@ -82,14 +82,14 @@ export const ExploreSongsResults = () => {
                 {song ? (
                     <a href={song?.uri}>{song?.name}</a>
                 ) : (
-                    <div className={styles['placeholder-song']} />
+                    <div className={styles['recommendation-placeholder-text']} />
                 )} 
                 {' '}
                 and
                 {artist ? (
                     <a href={artist?.uri}>{artist?.name}</a>
                 ) : (
-                    <div className={styles['placeholder-artist']} />
+                    <div className={styles['recommendation-placeholder-text']} />
                 )}
             </h2>
 
