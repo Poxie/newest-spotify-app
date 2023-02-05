@@ -97,3 +97,105 @@
     width: 180px;
     margin-top: 4px;
 }
+
+.artists-main {
+    display: flex;
+    gap: var(--spacing-primary);
+    margin-top: var(--spacing-primary);
+    padding: var(--spacing-secondary);
+    background-color: var(--background-secondary);
+    border-radius: var(--border-radius-primary);
+    border: 2px solid var(--background-tertiary);
+
+    &>* {
+        flex: 1;
+    }
+}
+.info-card {
+    display: flex;
+    gap: var(--spacing-secondary);
+}
+.info-card-image {
+    width: 150px;
+    height: 150px;
+    border-radius: var(--border-radius-primary);
+    overflow: hidden;
+    position: relative; 
+    background-color: var(--background-tertiary);
+}
+.info-card-text {
+    display: flex;
+    flex-direction: column;
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+.info-card-header {
+    font-size: 20px;
+    font-weight: 600;
+}
+.info-card-sub-header {
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+// Small card
+.info-card.small {
+    .info-card-image {
+        min-width: 80px;
+        width: 80px;
+        min-height: 80px;
+        height: 80px;
+    }
+    .info-card-header {
+        font-size: 16px;
+    }
+    .info-card-sub-header {
+        font-size: 12px;
+    }
+}
+
+// Loading card
+.loading-text {
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-primary);
+}
+.info-card-header-loading {
+    @extend .loading-text;
+    width: 200px;
+    height: 28px;
+}
+.info-card-sub-header-loading {
+    @extend .loading-text;
+    width: 120px;
+    height: 18px;
+    margin-top: 5px;
+}
+.info-card.small {
+    .info-card-header-loading {
+        width: 100px;
+        height: 20px;
+    }
+    .info-card-sub-header-loading {
+        height: 14px;
+    }
+}
+
+.related-artists-header {
+    margin: var(--spacing-secondary) 0;
+    display: block;
+}
+.related-artists {
+    display: flex;
+    gap: var(--spacing-secondary);
+    padding: var(--spacing-secondary);
+    background-color: var(--background-secondary);
+    border: 2px solid var(--background-tertiary);
+    border-radius: var(--border-radius-primary);
+
+    &>* {
+        flex: 1;
+    }
+}
