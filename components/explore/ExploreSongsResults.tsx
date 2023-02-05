@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import { Player } from "../player";
 
 const PLACEHOLDER_COUNT = 12;
-const INITIAL_PLACEHOLDER_COUNT = 8;
 export const ExploreSongsResults = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
