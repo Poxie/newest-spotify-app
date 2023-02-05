@@ -8,12 +8,13 @@ import { useEffect, useRef, useState } from "react";
 import { Player } from "../player";
 
 const PLACEHOLDER_COUNT = 12;
+const INITIAL_PLACEHOLDER_COUNT = 8;
 export const ExploreSongsResults = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
     const song = useAppSelector(selectExploreSong);
     const artist = useAppSelector(selectExploreArtist);
-    const results = useAppSelector(selectExploreRecommendations);
+    let results = useAppSelector(selectExploreRecommendations);
     const [loading, setLoading] = useState(true);
     const list = useRef<HTMLDivElement>(null);
     const fetching = useRef(false);
@@ -53,6 +54,8 @@ export const ExploreSongsResults = () => {
 
     // Showing more recommendations on scroll
     useEffect(() => {
+        if(!song || !artist) return;
+
         const onScroll = async () => {
             if(!list.current) return;
 
@@ -73,21 +76,32 @@ export const ExploreSongsResults = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, [song?.id, artist?.id]);
 
-    if(!results) return null;
     return(
         <section>
             <h2 className={styles['recommendations-header']}>
-                Songs based on <a href={song?.uri}>{song?.name}</a> and <a href={artist?.uri}>{artist?.name}</a>
+                Songs based on {' '}
+                {song ? (
+                    <a href={song?.uri}>{song?.name}</a>
+                ) : (
+                    <div className={styles['placeholder-song']} />
+                )} 
+                {' '}
+                and
+                {artist ? (
+                    <a href={artist?.uri}>{artist?.name}</a>
+                ) : (
+                    <div className={styles['placeholder-artist']} />
+                )}
             </h2>
 
             <div 
                 className={styles['recommendations']}
                 ref={list}
             >
-                {results.map(result => (
+                {results?.map((result, key) => (
                     <Player 
                         {...result}
-                        key={result.id}
+                        key={result?.id || key}
                     />
                 ))}
 

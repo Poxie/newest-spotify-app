@@ -72,13 +72,27 @@
     padding-bottom: var(--spacing-secondary);
     margin: 0;
     margin-top: var(--spacing-primary);
+    display: flex;
 
     a {
         font-weight: 700;
+        margin: 0 8px;
 
         &:hover {
             text-decoration: underline;
         }
+    }
+    .placeholder-artist, .placeholder-song {
+        background-color: var(--background-tertiary);
+        border-radius: var(--border-radius-secondary);
+        margin: 0 8px;
+        height: 30px;
+    }
+    .placeholder-song {
+        width: 150px;
+    }
+    .placeholder-artist {
+        width: 240px;
     }
 }
 
