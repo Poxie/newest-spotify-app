@@ -1,3 +1,4 @@
+import { ExploreArtistItems } from "./ExploreArtistItems"
 import { ExploreArtistsMain } from "./ExploreArtistsMain"
 import { ExploreArtistsRelated } from "./ExploreArtistsRelated"
 import { ExploreArtistsSelector } from "./ExploreArtistsSelector"
@@ -12,6 +13,7 @@ export const ExploreArtists = () => {
             <ExploreArtistsSelector />
             <ExploreArtistsMain />
             <ExploreArtistsRelated />
+            <ExploreArtistItems />
         </>
     )
 }
