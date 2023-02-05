@@ -33,12 +33,8 @@ export const ExploreArtistInfoCard: React.FC<{
     const url = track ? track.uri : artist?.uri;
     const image = track?.album.images[1].url || artist?.images[1].url;
     const header = track?.name || artist?.name;
-    const subHeader = track ? `${track.popularity} popularity` : (
-        artist ? `${artist?.followers.total.toLocaleString()} followers` : null
-    );
-    const genres = track ? track.artists[0]?.genres?.slice(0,3)?.join(', ') : (
-        artist ? artist.genres?.slice(0,3)?.join(', ') : null
-    )
+    const subHeader = track ? `${track.popularity} popularity` : `${artist?.followers.total.toLocaleString()} followers`;
+    const genres = track ? track.artists[0]?.genres?.slice(0,3)?.join(', ') : artist?.genres?.slice(0,3)?.join(', ');
     return(
         <div className={className}>
             <a 
