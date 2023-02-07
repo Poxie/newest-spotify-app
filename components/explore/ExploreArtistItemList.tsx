@@ -22,6 +22,7 @@ export const ExploreArtistItemList: React.FC<{
                         item={item}
                         numbered={numbered}
                         index={key + 1}
+                        key={key + 1}
                     />
                 ))}
             </ul>
