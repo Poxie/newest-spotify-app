@@ -86,6 +86,7 @@
     .recommendation-placeholder-text {
         background-color: var(--background-tertiary);
         border-radius: var(--border-radius-secondary);
+        border: 1.5px solid var(--background-quaternary);
         height: 30px;
         width: 150px;
     }
