@@ -73,10 +73,11 @@
     margin: 0;
     margin-top: var(--spacing-primary);
     display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
 
     a {
         font-weight: 700;
-        margin: 0 8px;
 
         &:hover {
             text-decoration: underline;
@@ -85,7 +86,6 @@
     .recommendation-placeholder-text {
         background-color: var(--background-tertiary);
         border-radius: var(--border-radius-secondary);
-        margin: 0 8px;
         height: 30px;
         width: 150px;
     }
@@ -284,6 +284,15 @@
     .artist-items {
         flex-direction: column;
         gap: unset;
+    }
+}
+@media (max-width: 700px) {
+    .selector {
+        flex-direction: column;
+
+        &>div {
+            width: 100%;
+        }
     }
 }
 @media (max-width: 450px) {
