@@ -1,1 +1,2 @@
 export const SET_PROFILE_TOKENS = 'SET_PROFILE_TOKENS';
+export const SET_PROFILE_TOP = 'SET_PROFILE_TOP';
