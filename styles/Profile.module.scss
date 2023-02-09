@@ -57,4 +57,12 @@
     overflow: hidden;
     border-radius: var(--border-radius-primary);
     margin-bottom: var(--spacing-tertiary);
+    background-color: var(--background-tertiary);
+}
+.top-item-text-loading {
+    height: 20px;
+    width: 70%;
+    margin: 0 auto;
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
 }

@@ -4,14 +4,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Artist, Track } from "@/types";
 import { ProfileTopItem } from "./ProfileTopItem";
 import { useEffect, useState } from 'react';
-import Button from '../button';
-import { Dropdown } from '../dropdown';
 import { ProfileTopHeader } from './ProfileTopHeader';
 import { useAuth } from '@/contexts/auth/AuthProvider';
 import { setProfileTop } from '@/redux/profile/actions';
 
 const NON_EXPANDED_COUNT = 6;
-const DEFAULT_TIME_FRAME = 'long_term';
+const PLACEHOLDER_COUNT = 6;
 
 const getItemImage = (type: 'artists' | 'tracks', item: Track | Artist) => {
     if(type === 'artists') return (item as Artist).images[1].url;
@@ -62,6 +60,16 @@ export const ProfileTop: React.FC<{
                     />
                 )
             })}
+
+            {/* Showing loading skeletons */}
+            {!items && (
+                Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
+                    <div className={styles['top-item']}>
+                        <div className={styles['item-image']} />
+                        <div className={styles['top-item-text-loading']} />
+                    </div>
+                ))
+            )}
         </ul>
         </>
     )
