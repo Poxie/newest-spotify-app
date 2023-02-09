@@ -5,8 +5,8 @@ import { ProfileTopGenres } from './ProfileTopGenres';
 export const ProfileTops = () => {
     return(
         <section className={styles['tops']}>
-            <ProfileTop type="artists" />
             <ProfileTop type="tracks" />
+            <ProfileTop type="artists" />
             <ProfileTopGenres />
         </section>
     )
