@@ -48,7 +48,8 @@
 }
 .selected {
     border-radius: var(--border-radius-primary);
-    background-color: var(--background-secondary);
+    background-color: transparent;
+    transition: background-color .2s;
     padding: var(--item-padding);
     font-weight: 600;
     cursor: pointer;
@@ -57,6 +58,9 @@
     align-items: center;
 
     &:hover {
+        background-color: var(--background-secondary);
+    }
+    &:active {
         background-color: var(--background-tertiary);
     }
     &::after {
