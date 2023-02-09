@@ -4,6 +4,7 @@ import { useAppSelector } from "@/redux/store";
 import { Artist, Track } from "@/types";
 import { ProfileTopItem } from "./ProfileTopItem";
 import { useState } from 'react';
+import Button from '../button';
 
 const NON_EXPANDED_COUNT = 6;
 
@@ -25,9 +26,18 @@ export const ProfileTop: React.FC<{
 
     return(
         <>
-        <h2 className={styles['top-header']}>
-            Your most played {type}
-        </h2>
+        <div className={styles['top-header']}>
+            <h2>
+                Your most played {type}
+            </h2>
+            <Button 
+                type={'transparent'}
+                onClick={() => setExpanded(!expanded)}
+                className={styles['top-header-button']}
+            >
+                Show {expanded ? 'less' : 'more'}
+            </Button>
+        </div>
         <ul className={styles['top-list']}>
             {items?.slice(0, expanded ? items.length : NON_EXPANDED_COUNT )?.map((item, key) => {
                 return(

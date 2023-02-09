@@ -7,8 +7,24 @@
     padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 var(--spacing-primary);
 }
 .top-header {
-    margin: 0;
-    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        margin: 0;
+        font-size: 30px;
+    }
+}
+.top-header-button {
+    padding: 10px 15px;
+
+    &:hover {
+        background-color: var(--background-secondary);
+    }
+    &:active {
+        background-color: var(--background-tertiary);
+    }
 }
 .top-list {
     display: grid;
