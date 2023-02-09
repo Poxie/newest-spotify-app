@@ -20,6 +20,7 @@ export const ProfileTop: React.FC<{
     const timeFrame = useAppSelector(state => 
         type === 'artists' ? selectTopArtistsTimeFrame(state) : selectTopTracksTimeFrame(state)
     )
+    console.log(timeFrame);
     const items = useAppSelector(state => 
         type === 'artists' ? selectTopArtists(state, timeFrame) : selectTopTracks(state, timeFrame)
     );

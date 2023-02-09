@@ -20,6 +20,10 @@
         font-size: 30px;
     }
 }
+.top-header-main {
+    display: flex;
+    gap: var(--spacing-secondary);
+}
 .top-header-button {
     padding: 10px 15px;
 
