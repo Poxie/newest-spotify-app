@@ -31,7 +31,7 @@ export type ProfileState = {
     recommendations: {
         artistTimeFrame: TopTimeFrame;
         trackTimeFrame: TopTimeFrame;
-        items: Track[];
+        items: Track[] | null;
     }
 }
 export type ProfileTopType = 'artists' | 'tracks' | 'genres';
