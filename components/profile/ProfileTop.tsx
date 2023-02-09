@@ -5,6 +5,8 @@ import { Artist, Track } from "@/types";
 import { ProfileTopItem } from "./ProfileTopItem";
 import { useState } from 'react';
 import Button from '../button';
+import { Dropdown } from '../dropdown';
+import { ProfileTopHeader } from './ProfileTopHeader';
 
 const NON_EXPANDED_COUNT = 6;
 
@@ -26,18 +28,11 @@ export const ProfileTop: React.FC<{
 
     return(
         <>
-        <div className={styles['top-header']}>
-            <h2>
-                Your most played {type}
-            </h2>
-            <Button 
-                type={'transparent'}
-                onClick={() => setExpanded(!expanded)}
-                className={styles['top-header-button']}
-            >
-                Show {expanded ? 'less' : 'more'}
-            </Button>
-        </div>
+        <ProfileTopHeader 
+            expanded={expanded}
+            toggleExpanded={() => setExpanded(!expanded)}
+            type={type}
+        />
         <ul className={styles['top-list']}>
             {items?.slice(0, expanded ? items.length : NON_EXPANDED_COUNT )?.map((item, key) => {
                 return(
