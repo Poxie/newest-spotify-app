@@ -1,14 +1,17 @@
 import styles from '../../styles/Profile.module.scss';
 import { selectTopArtists, selectTopArtistsTimeFrame, selectTopTracks, selectTopTracksTimeFrame } from "@/redux/profile/selectors";
-import { useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Artist, Track } from "@/types";
 import { ProfileTopItem } from "./ProfileTopItem";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../button';
 import { Dropdown } from '../dropdown';
 import { ProfileTopHeader } from './ProfileTopHeader';
+import { useAuth } from '@/contexts/auth/AuthProvider';
+import { setProfileTop } from '@/redux/profile/actions';
 
 const NON_EXPANDED_COUNT = 6;
+const DEFAULT_TIME_FRAME = 'long_term';
 
 const getItemImage = (type: 'artists' | 'tracks', item: Track | Artist) => {
     if(type === 'artists') return (item as Artist).images[1].url;
@@ -17,13 +20,26 @@ const getItemImage = (type: 'artists' | 'tracks', item: Track | Artist) => {
 export const ProfileTop: React.FC<{
     type: 'artists' | 'tracks';
 }> = ({ type }) => {
+    const { get } = useAuth();
+    const dispatch = useAppDispatch();
+
+    // Getting relevant time frame and items
     const timeFrame = useAppSelector(state => 
         type === 'artists' ? selectTopArtistsTimeFrame(state) : selectTopTracksTimeFrame(state)
     )
-    console.log(timeFrame);
     const items = useAppSelector(state => 
         type === 'artists' ? selectTopArtists(state, timeFrame) : selectTopTracks(state, timeFrame)
     );
+
+    // If no items are already fetched, fetch new items
+    useEffect(() => {
+        if(items?.length) return;
+
+        get<{ items: Track[] | Artist[] }>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/me/top/${type}?time_range=${timeFrame}`)
+            .then(({ items }) => {
+                dispatch(setProfileTop(type, items, timeFrame));
+            })
+    }, [timeFrame]);
 
     const [expanded, setExpanded] = useState(false);
 
