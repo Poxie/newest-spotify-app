@@ -1,5 +1,5 @@
 import { Artist, TopTimeFrame, Track } from "@/types";
-import { SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
+import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileTopGenre, ProfileTopType } from "./types";
 
 export const setProfileTokens = (token: string | null, refreshToken: string | null) => ({
@@ -20,5 +20,9 @@ export const setProfileRecommendationsTimeFrame = (type: 'track' | 'artist', tim
 })
 export const setProfileRecommendations = (items: Track[]) => ({
     type: SET_PROFILE_RECOMMENDATIONS,
+    payload: items
+})
+export const addProfileRecommendations = (items: Track[]) => ({
+    type: ADD_PROFILE_RECOMMENDATIONS,
     payload: items
 })

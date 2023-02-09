@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { createReducer, updateObject } from "../utils";
-import { SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
+import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileState, ProfileTopType } from "./types";
 
 // Function to get property key based on top type
@@ -77,6 +77,18 @@ const setProfileRecommendations: ReducerAction = (state, action) => {
     })
 }
 
+const addProfileRecommendations: ReducerAction = (state, action) => {
+    const items = action.payload;
+
+    return updateObject(state, {
+        ...state,
+        recommendations: {
+            ...state.recommendations,
+            items: [...(state.recommendations.items || []), ...items]
+        }
+    })
+}
+
 // Creating reducer
 export const profileReducer = createReducer({
     token: null,
@@ -91,5 +103,6 @@ export const profileReducer = createReducer({
     [SET_PROFILE_TOP]: setProfileTop,
     [SET_PROFILE_TOP_TIME_FRAME]: setProfileTopTimeFrame,
     [SET_PROFILE_RECOMMENDATIONS_TIME_FRAME]: setProfileRecommendationsTimeFrame,
-    [SET_PROFILE_RECOMMENDATIONS]: setProfileRecommendations
+    [SET_PROFILE_RECOMMENDATIONS]: setProfileRecommendations,
+    [ADD_PROFILE_RECOMMENDATIONS]: addProfileRecommendations
 })
