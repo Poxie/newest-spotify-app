@@ -19,5 +19,14 @@ export type ProfileState = {
             medium_term?: Artist[];
             short_term?: Artist[];
         }
-    }
+    };
+    topGenres: {
+        timeFrame: TopTimeFrame;
+        items: {
+            long_term?: { text: string, count: number }
+            medium_term?: { text: string, count: number }
+            short_term?: { text: string, count: number }
+        }
+    };
 }
+export type ProfileTopType = 'artists' | 'tracks' | 'genres';

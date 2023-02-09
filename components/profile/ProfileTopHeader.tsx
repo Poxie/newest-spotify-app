@@ -18,7 +18,7 @@ const getTimeFrameFromString = (readableTime: string) => {
 }
 
 export const ProfileTopHeader: React.FC<{
-    type: 'artists' | 'tracks';
+    type: 'artists' | 'tracks' | 'genres';
     expanded: boolean;
     toggleExpanded: () => void;
     activeTimeFrame: TopTimeFrame;
