@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { createReducer, updateObject } from "../utils";
-import { SET_PROFILE_TOKENS, SET_PROFILE_TOP } from "./constants";
+import { SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileState } from "./types";
 
 // Creating reducer actions
@@ -32,6 +32,19 @@ const setProfileTop: ReducerAction = (state, action) => {
     })
 }
 
+const setProfileTopTimeFrame: ReducerAction = (state, action) => {
+    const { type, timeFrame } = action.payload;
+
+    const property = type === 'artists' ? 'topArtists' : 'topTracks';
+    return updateObject(state, {
+        ...state,
+        [property]: {
+            ...state[property],
+            timeFrame
+        }
+    })
+}
+
 // Creating reducer
 export const profileReducer = createReducer({
     token: null,
@@ -41,5 +54,6 @@ export const profileReducer = createReducer({
     topTracks: { timeFrame: 'long_term', items: {} }
 }, {
     [SET_PROFILE_TOKENS]: setProfileTokens,
-    [SET_PROFILE_TOP]: setProfileTop
+    [SET_PROFILE_TOP]: setProfileTop,
+    [SET_PROFILE_TOP_TIME_FRAME]: setProfileTopTimeFrame
 })
