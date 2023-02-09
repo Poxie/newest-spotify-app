@@ -84,3 +84,5 @@ export type Image = {
     url: string;
     width: number;
 }
+
+export type TopTimeFrame = 'long_term' | 'medium_term' | 'short_term';

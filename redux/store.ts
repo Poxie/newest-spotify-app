@@ -9,11 +9,14 @@ import { topListsReducer } from './top-lists/reducer';
 import { TopListsState } from './top-lists/types';
 import { ExploreState } from './explore/types';
 import { exploreReducer } from './explore/reducer';
+import { profileReducer } from './profile/reducer';
+import { ProfileState } from './profile/types';
 
 const combinedReducers = combineReducers({
     auth: authReducer,
     topLists: topListsReducer,
-    explore: exploreReducer
+    explore: exploreReducer,
+    profile: profileReducer
 });
 
 const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) => {
@@ -21,6 +24,7 @@ const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) 
         // We don't need to hydrate these
         delete action.payload.topLists;
         delete action.payload.explore;
+        delete action.payload.profile;
 
         const nextState = {
             ...state,
@@ -59,6 +63,7 @@ export type RootState = {
     auth: AuthState;
     topLists: TopListsState;
     explore: ExploreState;
+    profile: ProfileState;
 }
 
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

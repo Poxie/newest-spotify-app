@@ -1,0 +1,204 @@
+.tops {
+    width: var(--width-main);
+    max-width: var(--width-main-max);
+    margin: 0 auto;
+    display: grid;
+    padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 calc(var(--spacing-primary) * 2);
+}
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+    background-color: var(--background-primary);
+    padding: var(--spacing-primary) 0;
+
+    h2 {
+        margin: 0;
+        font-size: 30px;
+    }
+}
+.top-header-main {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-secondary);
+}
+.top-header-button {
+    padding: 10px 15px;
+
+    &:hover {
+        background-color: var(--background-secondary);
+    }
+    &:active {
+        background-color: var(--background-tertiary);
+    }
+}
+.top-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(145px, 100%), 1fr));
+    gap: var(--spacing-secondary);
+    border-radius: var(--border-radius-primary);
+    background-color: var(--background-secondary);
+    padding: var(--spacing-secondary);
+}
+.top-item {
+    text-align: center;
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+.item-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-primary);
+    margin-bottom: var(--spacing-tertiary);
+    background-color: var(--background-tertiary);
+}
+.top-item-text-loading {
+    height: 20px;
+    width: 70%;
+    margin: 0 auto;
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+}
+.genres {
+    background-color: var(--background-secondary);
+    border-radius: var(--border-radius-primary);
+    padding: var(--spacing-secondary);
+    display: grid;
+    gap: var(--spacing-tertiary);
+}
+.genre {
+    position: relative;
+    display: flex;
+}
+.genre-graph-container {
+    --graph-height: 30px;
+    flex: 1;
+}
+.genre-graph {
+    height: var(--graph-height);
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre-text {
+    color: var(--text-primary);
+    width: 170px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding-right: var(--spacing-secondary);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.genre-text-loading-container {
+    width: 170px;
+}
+.genre-text-loading {
+    width: 100px;
+    height: 20px;
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre-graph-loading {
+    height: var(--graph-height);
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre {
+    &:nth-of-type(1) {
+        .genre-graph-loading {
+            width: 100%;
+        }
+    }
+    &:nth-of-type(2) {
+        .genre-graph-loading {
+            width: 75%;
+        }
+    }
+    &:nth-of-type(3) {
+        .genre-graph-loading {
+            width: 62%;
+        }
+    }
+    &:nth-of-type(4) {
+        .genre-graph-loading {
+            width: 37%;
+        }
+    }
+    &:nth-of-type(5) {
+        .genre-graph-loading {
+            width: 28%;
+        }
+    }
+    &:nth-of-type(6) {
+        .genre-graph-loading {
+            width: 22%;
+        }
+    }
+    &:nth-of-type(7) {
+        .genre-graph-loading {
+            width: 10%;
+        }
+    }
+}
+
+.recommendations {
+    padding: calc(var(--spacing-primary) * 2) 0 var(--spacing-primary);
+    max-width: var(--width-main-max);
+    width: var(--width-main);
+    margin: 0 auto;
+    border-top: 1px solid var(--background-tertiary);
+}
+.recommendations-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding-bottom: var(--spacing-primary);
+}
+.recommendation-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+    gap: var(--spacing-secondary);
+}
+
+@media (max-width: 700px) {
+    .top-header {
+        align-items: flex-start;
+    }
+    .top-header-main {
+        flex-direction: column;
+
+        h2 {
+            font-size: 25px;
+        }
+    }
+}
+@media (max-width: 500px) {
+    .top-header {
+        flex-direction: column;
+    }
+    .top-header-main {
+        &>div {
+            margin-left: -8px;
+        }
+    }
+    .top-header-button {
+        align-self: flex-end;
+        margin-top: -40px
+    }
+    .recommendations-header {
+        font-size: 20px;
+    }
+    .genre {
+        flex-direction: column;
+        gap: var(--spacing-tertiary);
+    }
+}
