@@ -3,13 +3,17 @@
     max-width: var(--width-main-max);
     margin: 0 auto;
     display: grid;
-    gap: var(--spacing-primary);
     padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 var(--spacing-primary);
 }
 .top-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+    background-color: var(--background-primary);
+    padding: var(--spacing-primary) 0;
 
     h2 {
         margin: 0;
