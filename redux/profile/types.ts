@@ -23,10 +23,11 @@ export type ProfileState = {
     topGenres: {
         timeFrame: TopTimeFrame;
         items: {
-            long_term?: { text: string, count: number }
-            medium_term?: { text: string, count: number }
-            short_term?: { text: string, count: number }
+            long_term?: ProfileTopGenre[]
+            medium_term?: ProfileTopGenre[]
+            short_term?: ProfileTopGenre[]
         }
     };
 }
 export type ProfileTopType = 'artists' | 'tracks' | 'genres';
+export type ProfileTopGenre = { text: string, count: number };
