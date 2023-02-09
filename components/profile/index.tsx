@@ -15,7 +15,6 @@ export default function Profile() {
         if(loading || token) return;
         router.replace('/login');
     }, [token, loading]);
-    if(!token) return null;
 
     return(
         <div>

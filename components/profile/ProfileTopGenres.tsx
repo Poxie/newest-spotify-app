@@ -1,7 +1,7 @@
 import styles from '../../styles/Profile.module.scss';
 import { useAuth } from "@/contexts/auth/AuthProvider";
 import { setProfileTop } from "@/redux/profile/actions";
-import { selectTopGenres, selectTopGenresTimeFrame, selectTopArtists } from "@/redux/profile/selectors";
+import { selectTopGenres, selectTopGenresTimeFrame, selectTopArtists, selectProfileToken } from "@/redux/profile/selectors";
 import { ProfileTopGenre as ProfileTopGenreType } from "@/redux/profile/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Artist } from "@/types";
@@ -16,12 +16,16 @@ const PLACEHOLDER_COUNT = 7;
 export const ProfileTopGenres = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
+    const token = useAppSelector(selectProfileToken);
     const timeFrame = useAppSelector(selectTopGenresTimeFrame);
     const genres = useAppSelector(state => selectTopGenres(state, timeFrame));
     const artists = useAppSelector(state => selectTopArtists(state, timeFrame));
     const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
+        // User is not logged in (yet)
+        if(!token) return;
+
         // If artists are not fetched, and timeFrame is default, return
         // This since long_term artists are being fetched elsewhere
         if(!artists && timeFrame === DEFAULT_TIME_FRAME) return;
@@ -59,7 +63,7 @@ export const ProfileTopGenres = () => {
         const sortedGenres = Object.values(genreCounts).sort((a,b) => b.count - a.count);
 
         dispatch(setProfileTop('genres', sortedGenres, timeFrame));
-    }, [timeFrame, artists]);
+    }, [timeFrame, artists, token]);
     
     return(
         <>

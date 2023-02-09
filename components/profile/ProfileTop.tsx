@@ -1,5 +1,5 @@
 import styles from '../../styles/Profile.module.scss';
-import { selectTopArtists, selectTopArtistsTimeFrame, selectTopTracks, selectTopTracksTimeFrame } from "@/redux/profile/selectors";
+import { selectProfileToken, selectTopArtists, selectTopArtistsTimeFrame, selectTopTracks, selectTopTracksTimeFrame } from "@/redux/profile/selectors";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Artist, Track } from "@/types";
 import { ProfileTopItem } from "./ProfileTopItem";
@@ -20,6 +20,7 @@ export const ProfileTop: React.FC<{
 }> = ({ type }) => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
+    const token = useAppSelector(selectProfileToken);
     const [expanded, setExpanded] = useState(false);
 
     // Getting relevant time frame and items
@@ -32,13 +33,13 @@ export const ProfileTop: React.FC<{
 
     // If no items are already fetched, fetch new items
     useEffect(() => {
-        if(items?.length) return;
+        if(items?.length || !token) return;
 
         get<{ items: Track[] | Artist[] }>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/me/top/${type}?time_range=${timeFrame}`)
             .then(({ items }) => {
                 dispatch(setProfileTop(type, items, timeFrame));
             })
-    }, [timeFrame]);
+    }, [timeFrame, token]);
 
     return(
         <>
