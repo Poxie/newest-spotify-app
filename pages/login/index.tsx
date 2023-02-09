@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 
 type TokenResponse = {
-    access_token: string;
-    refresh_token: string;
+    access_token?: string;
+    refresh_token?: string;
 }
 
 const SCOPES = 'user-read-private playlist-read-private user-top-read user-read-recently-played';
@@ -37,6 +37,9 @@ export default function Login() {
         if(code) {
             getTokenFromCode(code)
                 .then(({ access_token, refresh_token }) => {
+                    // If not tokems
+                    if(!access_token || !refresh_token) return;
+
                     // Storing tokens in local storage
                     window.localStorage.token = access_token;
                     window.localStorage.refreshToken = refresh_token;
