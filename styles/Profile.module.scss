@@ -78,10 +78,11 @@
     display: flex;
 }
 .genre-graph-container {
+    --graph-height: 30px;
     flex: 1;
 }
 .genre-graph {
-    height: 30px;
+    height: var(--graph-height);
     background-color: var(--color-secondary);
     border-radius: var(--border-radius-secondary);
 }
@@ -91,4 +92,55 @@
     color: var(--text-secondary);
     font-weight: 600;
     padding-right: var(--spacing-secondary);
+}
+.genre-text-loading-container {
+    width: 170px;
+}
+.genre-text-loading {
+    width: 100px;
+    height: 20px;
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre-graph-loading {
+    height: var(--graph-height);
+    background-color: var(--background-tertiary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre {
+    &:nth-of-type(1) {
+        .genre-graph-loading {
+            width: 100%;
+        }
+    }
+    &:nth-of-type(2) {
+        .genre-graph-loading {
+            width: 75%;
+        }
+    }
+    &:nth-of-type(3) {
+        .genre-graph-loading {
+            width: 62%;
+        }
+    }
+    &:nth-of-type(4) {
+        .genre-graph-loading {
+            width: 37%;
+        }
+    }
+    &:nth-of-type(5) {
+        .genre-graph-loading {
+            width: 28%;
+        }
+    }
+    &:nth-of-type(6) {
+        .genre-graph-loading {
+            width: 22%;
+        }
+    }
+    &:nth-of-type(7) {
+        .genre-graph-loading {
+            width: 10%;
+        }
+    }
 }

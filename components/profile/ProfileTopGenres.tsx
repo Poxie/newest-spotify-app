@@ -10,6 +10,9 @@ import { ProfileTopGenre } from "./ProfileTopGenre";
 import { ProfileTopHeader } from "./ProfileTopHeader"
 
 const DEFAULT_TIME_FRAME = 'long_term';
+const EXPANDED_SHOW_COUNT = 15;
+const NON_EXPANDED_SHOW_COUNT = 7;
+const PLACEHOLDER_COUNT = 7;
 export const ProfileTopGenres = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
@@ -68,7 +71,7 @@ export const ProfileTopGenres = () => {
             />
 
             <ul className={styles['genres']}>
-                {genres?.map((genre, key) => (
+                {genres?.slice(0, expanded ? EXPANDED_SHOW_COUNT : NON_EXPANDED_SHOW_COUNT)?.map((genre, key) => (
                     <ProfileTopGenre 
                         genre={genre}
                         largestCount={genres[0].count}
@@ -76,6 +79,19 @@ export const ProfileTopGenres = () => {
                         key={genre.text}
                     />
                 ))}
+
+                {!genres && (
+                    Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
+                        <div className={styles['genre']}>
+                            <div className={styles['genre-text-loading-container']}>
+                                <div className={styles['genre-text-loading']} />
+                            </div>
+                            <div className={styles['genre-graph-container']}>
+                                <div className={styles['genre-graph-loading']} />
+                            </div>
+                        </div>
+                    ))
+                )}
             </ul>
         </>
     )
