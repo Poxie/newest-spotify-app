@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { createReducer, updateObject } from "../utils";
-import { SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
+import { SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileState, ProfileTopType } from "./types";
 
 // Function to get property key based on top type
@@ -52,6 +52,19 @@ const setProfileTopTimeFrame: ReducerAction = (state, action) => {
     })
 }
 
+const setProfileRecommendationsTimeFrame: ReducerAction = (state, action) => {
+    const { type, timeFrame } = action.payload;
+
+    const property = type === 'artist' ? 'artistTimeFrame' : 'trackTimeFrame';
+    return updateObject(state, {
+        ...state,
+        recommendations: {
+            ...state.recommendations,
+            [property]: timeFrame
+        }
+    })
+}
+
 // Creating reducer
 export const profileReducer = createReducer({
     token: null,
@@ -59,9 +72,11 @@ export const profileReducer = createReducer({
     loading: true,
     topArtists: { timeFrame: 'long_term', items: {} },
     topTracks: { timeFrame: 'long_term', items: {} },
-    topGenres: { timeFrame: 'long_term', items: {} }
+    topGenres: { timeFrame: 'long_term', items: {} },
+    recommendations: { artistTimeFrame: 'long_term', trackTimeFrame: 'long_term', items: [] }
 }, {
     [SET_PROFILE_TOKENS]: setProfileTokens,
     [SET_PROFILE_TOP]: setProfileTop,
-    [SET_PROFILE_TOP_TIME_FRAME]: setProfileTopTimeFrame
+    [SET_PROFILE_TOP_TIME_FRAME]: setProfileTopTimeFrame,
+    [SET_PROFILE_RECOMMENDATIONS_TIME_FRAME]: setProfileRecommendationsTimeFrame
 })

@@ -10,3 +10,6 @@ export const selectTopTracks = (state: RootState, timeFrame: TopTimeFrame) => st
 export const selectTopTracksTimeFrame = (state: RootState) => state.profile.topTracks.timeFrame;
 export const selectTopGenres = (state: RootState, timeFrame: TopTimeFrame) => state.profile.topGenres.items[timeFrame];
 export const selectTopGenresTimeFrame = (state: RootState) => state.profile.topGenres.timeFrame;
+
+export const selectRecommendationsArtistTimeFrame = (state: RootState) => state.profile.recommendations.artistTimeFrame;
+export const selectRecommendationsTrackTimeFrame = (state: RootState) => state.profile.recommendations.trackTimeFrame;

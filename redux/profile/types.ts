@@ -28,6 +28,11 @@ export type ProfileState = {
             short_term?: ProfileTopGenre[]
         }
     };
+    recommendations: {
+        artistTimeFrame: TopTimeFrame;
+        trackTimeFrame: TopTimeFrame;
+        items: Track[];
+    }
 }
 export type ProfileTopType = 'artists' | 'tracks' | 'genres';
 export type ProfileTopGenre = { text: string, count: number };
