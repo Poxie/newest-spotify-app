@@ -3,7 +3,7 @@
     max-width: var(--width-main-max);
     margin: 0 auto;
     display: grid;
-    padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 var(--spacing-primary);
+    padding: calc(var(--spacing-primary) + var(--navbar-height)) 0 calc(var(--spacing-primary) * 2);
 }
 .top-header {
     display: flex;
@@ -149,7 +149,7 @@
 }
 
 .recommendations {
-    padding: var(--spacing-primary) 0;
+    padding: calc(var(--spacing-primary) * 2) 0 var(--spacing-primary);
     max-width: var(--width-main-max);
     width: var(--width-main);
     margin: 0 auto;
