@@ -2,6 +2,7 @@ import { selectProfileToken, selectProfileTokenLoading } from "@/redux/profile/s
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { ProfileRecommendations } from "./ProfileRecommendations";
 import { ProfileTops } from "./ProfileTops";
 
 export default function Profile() {
@@ -17,8 +18,9 @@ export default function Profile() {
     }, [token, loading]);
 
     return(
-        <div>
+        <>
             <ProfileTops />
-        </div>
+            <ProfileRecommendations />
+        </>
     )
 }

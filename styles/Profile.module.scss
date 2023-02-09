@@ -147,3 +147,16 @@
         }
     }
 }
+
+.recommendations {
+    padding: var(--spacing-primary) 0;
+    max-width: var(--width-main-max);
+    width: var(--width-main);
+    margin: 0 auto;
+    border-top: 1px solid var(--background-tertiary);
+}
+.recommendations-header {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
