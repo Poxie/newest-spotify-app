@@ -11,14 +11,16 @@ const setProfileTokens: ReducerAction = (state, action) => {
     return updateObject(state, {
         ...state,
         token,
-        refreshToken
+        refreshToken,
+        loading: false
     })
 }
 
 // Creating reducer
 export const profileReducer = createReducer({
     token: null,
-    refreshToken: null
+    refreshToken: null,
+    loading: true
 }, {
     [SET_PROFILE_TOKENS]: setProfileTokens
 })
