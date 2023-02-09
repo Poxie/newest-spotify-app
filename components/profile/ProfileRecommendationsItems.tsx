@@ -2,13 +2,12 @@ import styles from '../../styles/Profile.module.scss';
 import { selectRecommendations, selectRecommendationsArtistTimeFrame, selectRecommendationsTrackTimeFrame, selectTopArtists, selectTopTracks } from "@/redux/profile/selectors"
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Player } from "../player";
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/contexts/auth/AuthProvider';
 import { Artist, Track } from '@/types';
 import { addProfileRecommendations, setProfileRecommendations, setProfileTop } from '@/redux/profile/actions';
 
 const PLACEHOLDER_COUNT = 8;
-const SCROLL_THRESHOLD = 900;
 export const ProfileRecommendationsItems = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
@@ -17,12 +16,15 @@ export const ProfileRecommendationsItems = () => {
     const tracks = useAppSelector(state => selectTopTracks(state, trackTimeFrame));
     const artists = useAppSelector(state => selectTopArtists(state, artistTimeFrame));
     const recommendations = useAppSelector(selectRecommendations);
+    const [loading, setLoading] = useState(false);
     const fetching = useRef(false);
+    const list = useRef<HTMLDivElement>(null);
 
     // Function to get recommendations
     const getRecommendations = async (tracks: Track[], artists: Artist[]) => {
         if(!tracks || !artists) throw new Error('TrackArtist error');
         fetching.current = true;
+        setLoading(true);
 
         const seedTracks = tracks[0].id;
         const seedArtists = artists[0].id;
@@ -30,6 +32,7 @@ export const ProfileRecommendationsItems = () => {
 
         const { tracks: results } = await get<{ tracks: Track[] }>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/recommendations?seed_tracks=${seedTracks}&seed_artists=${seedArtists}&seed_genres=${seedGenres}`);
         fetching.current = false;
+        setLoading(false);
         return results;
     }
 
@@ -73,11 +76,11 @@ export const ProfileRecommendationsItems = () => {
     // Fetching recommendations on scroll
     useEffect(() => {
         const onScroll = async () => {
-            if(fetching.current || !tracks || !artists || !recommendations) return;
+            if(fetching.current || !list.current || !tracks || !artists || !recommendations) return;
 
             // Checking if scroll is near bottom of page
-            const diffFromBottom = Math.abs(window.scrollY + window.innerHeight - document.body.offsetHeight);
-            if(diffFromBottom < SCROLL_THRESHOLD) {
+            const fromBottom = list.current.getBoundingClientRect().bottom;
+            if(fromBottom - screen.height < screen.height) {
                 // If so, fetch more recommendations
                 const items = await getRecommendations(tracks, artists);
                 
@@ -95,7 +98,7 @@ export const ProfileRecommendationsItems = () => {
     }, [tracks, artists, recommendations]);
 
     return(
-        <div className={styles['recommendation-items']}>
+        <div className={styles['recommendation-items']} ref={list}>
             {recommendations?.map(track => (
                 <Player 
                     {...track}
@@ -103,9 +106,11 @@ export const ProfileRecommendationsItems = () => {
                 />
             ))}
 
-            {Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
-                <Player loading key={key} />
-            ))}
+            {loading && (
+                Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
+                    <Player loading key={key} />
+                ))
+            )}
         </div>
     )
 }
