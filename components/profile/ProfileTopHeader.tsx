@@ -5,7 +5,12 @@ import styles from '../../styles/Profile.module.scss';
 import Button from '../button';
 import { Dropdown } from '../dropdown';
 
-const DROPDOWN_ITEMS = ['All time', 'Last 6 months', 'Last 4 weeks'];
+const TIME_FRAMES = {
+    'long_term': 'All time',
+    'medium_term': 'Last 6 months',
+    'short_term': 'Last 4 weeks'
+}
+const DROPDOWN_ITEMS = Object.values(TIME_FRAMES);
 const getTimeFrameFromString = (readableTime: string) => {
     if(readableTime === DROPDOWN_ITEMS[0]) return 'long_term';
     if(readableTime === DROPDOWN_ITEMS[1]) return 'medium_term';
@@ -16,7 +21,8 @@ export const ProfileTopHeader: React.FC<{
     type: 'artists' | 'tracks';
     expanded: boolean;
     toggleExpanded: () => void;
-}> = ({ type, expanded, toggleExpanded }) => {
+    activeTimeFrame: TopTimeFrame;
+}> = ({ type, expanded, toggleExpanded, activeTimeFrame }) => {
     const dispatch = useAppDispatch();
 
     const changeTimeFrame = (readableTimeFrame: TopTimeFrame) => {
@@ -33,6 +39,7 @@ export const ProfileTopHeader: React.FC<{
                 <Dropdown 
                     items={DROPDOWN_ITEMS}
                     onChange={timeFrame => changeTimeFrame(timeFrame as TopTimeFrame)}
+                    defaultSelected={TIME_FRAMES[activeTimeFrame]}
                 />
             </div>
             <Button 

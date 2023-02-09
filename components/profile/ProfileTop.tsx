@@ -47,6 +47,7 @@ export const ProfileTop: React.FC<{
             expanded={expanded}
             toggleExpanded={() => setExpanded(!expanded)}
             type={type}
+            activeTimeFrame={timeFrame}
         />
         <ul className={styles['top-list']}>
             {items?.slice(0, expanded ? items.length : NON_EXPANDED_COUNT )?.map((item, key) => {
