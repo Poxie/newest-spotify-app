@@ -3,19 +3,7 @@ import { useAppDispatch } from '@/redux/store';
 import { TopTimeFrame } from '@/types';
 import styles from '../../styles/Profile.module.scss';
 import Button from '../button';
-import { Dropdown } from '../dropdown';
-
-const TIME_FRAMES = {
-    'long_term': 'All time',
-    'medium_term': 'Last 6 months',
-    'short_term': 'Last 4 weeks'
-}
-const DROPDOWN_ITEMS = Object.values(TIME_FRAMES);
-const getTimeFrameFromString = (readableTime: string) => {
-    if(readableTime === DROPDOWN_ITEMS[0]) return 'long_term';
-    if(readableTime === DROPDOWN_ITEMS[1]) return 'medium_term';
-    return 'short_term';
-}
+import TimeFrameDropdown from '../time-frame-dropdown';
 
 export const ProfileTopHeader: React.FC<{
     type: 'artists' | 'tracks' | 'genres';
@@ -25,8 +13,7 @@ export const ProfileTopHeader: React.FC<{
 }> = ({ type, expanded, toggleExpanded, activeTimeFrame }) => {
     const dispatch = useAppDispatch();
 
-    const changeTimeFrame = (readableTimeFrame: TopTimeFrame) => {
-        const timeFrame = getTimeFrameFromString(readableTimeFrame);
+    const changeTimeFrame = (timeFrame: TopTimeFrame) => {
         dispatch(setProfileTopTimeFrame(type, timeFrame));
     }
 
@@ -36,10 +23,9 @@ export const ProfileTopHeader: React.FC<{
                 <h2>
                     Your most played {type}
                 </h2>
-                <Dropdown 
-                    items={DROPDOWN_ITEMS}
-                    onChange={timeFrame => changeTimeFrame(timeFrame as TopTimeFrame)}
-                    defaultSelected={TIME_FRAMES[activeTimeFrame]}
+                <TimeFrameDropdown 
+                    defaultActive={activeTimeFrame}
+                    onChange={changeTimeFrame}
                 />
             </div>
             <Button 
