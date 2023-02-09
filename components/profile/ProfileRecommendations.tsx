@@ -1,6 +1,5 @@
 import styles from '../../styles/Profile.module.scss';
-import TimeFrameDropdown from '../time-frame-dropdown';
-import { ProfileRecommendationsItems } from './ProfikleRecommendationsItems';
+import { ProfileRecommendationsItems } from './ProfileRecommendationsItems';
 import { ProfileRecommendationsHeader } from './ProfileRecommendationsHeader';
 
 export const ProfileRecommendations = () => {
