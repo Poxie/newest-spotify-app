@@ -5,9 +5,9 @@ import { ProfileRecommendationsHeader } from './ProfileRecommendationsHeader';
 
 export const ProfileRecommendations = () => {
     return(
-        <div className={styles['recommendations']}>
+        <section className={styles['recommendations']}>
             <ProfileRecommendationsHeader />
             <ProfileRecommendationsItems />
-        </div>
+        </section>
     )
 }
