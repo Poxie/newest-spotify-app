@@ -20,6 +20,7 @@ export const ProfileTop: React.FC<{
 }> = ({ type }) => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
+    const [expanded, setExpanded] = useState(false);
 
     // Getting relevant time frame and items
     const timeFrame = useAppSelector(state => 
@@ -38,8 +39,6 @@ export const ProfileTop: React.FC<{
                 dispatch(setProfileTop(type, items, timeFrame));
             })
     }, [timeFrame]);
-
-    const [expanded, setExpanded] = useState(false);
 
     return(
         <>
