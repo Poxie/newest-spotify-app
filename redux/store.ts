@@ -24,6 +24,7 @@ const reducer = (state: ReturnType<typeof combinedReducers>, action: AnyAction) 
         // We don't need to hydrate these
         delete action.payload.topLists;
         delete action.payload.explore;
+        delete action.payload.profile;
 
         const nextState = {
             ...state,
