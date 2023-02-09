@@ -66,3 +66,29 @@
     background-color: var(--background-tertiary);
     border-radius: var(--border-radius-secondary);
 }
+.genres {
+    background-color: var(--background-secondary);
+    border-radius: var(--border-radius-primary);
+    padding: var(--spacing-secondary);
+    display: grid;
+    gap: var(--spacing-tertiary);
+}
+.genre {
+    position: relative;
+    display: flex;
+}
+.genre-graph-container {
+    flex: 1;
+}
+.genre-graph {
+    height: 30px;
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-secondary);
+}
+.genre-text {
+    color: var(--text-primary);
+    width: 170px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding-right: var(--spacing-secondary);
+}

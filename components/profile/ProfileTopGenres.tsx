@@ -1,10 +1,12 @@
+import styles from '../../styles/Profile.module.scss';
 import { useAuth } from "@/contexts/auth/AuthProvider";
 import { setProfileTop } from "@/redux/profile/actions";
 import { selectTopGenres, selectTopGenresTimeFrame, selectTopArtists } from "@/redux/profile/selectors";
-import { ProfileTopGenre } from "@/redux/profile/types";
+import { ProfileTopGenre as ProfileTopGenreType } from "@/redux/profile/types";
 import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Artist } from "@/types";
 import { useEffect, useState } from "react";
+import { ProfileTopGenre } from "./ProfileTopGenre";
 import { ProfileTopHeader } from "./ProfileTopHeader"
 
 const DEFAULT_TIME_FRAME = 'long_term';
@@ -38,7 +40,7 @@ export const ProfileTopGenres = () => {
         }
 
         // Getting genre count
-        const genreCounts: {[key: string]: ProfileTopGenre} = {};
+        const genreCounts: {[key: string]: ProfileTopGenreType} = {};
         for (const genre of genres) {
             if (!genreCounts[genre]) {
                 genreCounts[genre] = {
@@ -64,7 +66,17 @@ export const ProfileTopGenres = () => {
                 expanded={expanded}
                 toggleExpanded={() => setExpanded(!expanded)}
             />
-            {genres?.map(genre => genre.text)}
+
+            <ul className={styles['genres']}>
+                {genres?.map((genre, key) => (
+                    <ProfileTopGenre 
+                        genre={genre}
+                        largestCount={genres[0].count}
+                        index={key + 1}
+                        key={genre.text}
+                    />
+                ))}
+            </ul>
         </>
     )
 }
