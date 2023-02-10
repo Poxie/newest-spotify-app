@@ -11,7 +11,7 @@ const AuthContext = React.createContext({} as {
 export const useAuth = () => React.useContext(AuthContext);
 
 export const AuthProvider: React.FC<{
-    children: ReactElement[];
+    children: ReactElement | ReactElement[];
 }> = ({ children }) => {
     const dispatch = useAppDispatch();
     const token = useAppSelector(selectAuthToken);
