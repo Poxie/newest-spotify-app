@@ -6,6 +6,7 @@ import React, { ReactElement, useEffect } from 'react';
 
 const AuthContext = React.createContext({} as {
     get: <T>(query: string, modify?: boolean) => Promise<T>;
+    post: <T>(query: string, body: Object) => Promise<T>;
 });
 
 export const useAuth = () => React.useContext(AuthContext);
@@ -22,6 +23,7 @@ export const AuthProvider: React.FC<{
     useEffect(() => {
         const profileToken = window.localStorage.token;
         const refreshToken = window.localStorage.refreshToken;
+        const modifyRefreshToken =window.localStorage.modifyRefreshToken;
         
         // If user is not logged in, don't fetch data
         if(!profileToken || !refreshToken) {
@@ -36,7 +38,18 @@ export const AuthProvider: React.FC<{
         }).then(res => res.json()).then(data => {
             if(data.error) return;
             dispatch(setProfileTokens(data.access_token, refreshToken));
-        })
+        });
+
+        // Fetching for refreshed modify token
+        if(modifyRefreshToken) {
+            fetch('/api/refresh', {
+                method: 'POST',
+                body: JSON.stringify({ refreshToken: modifyRefreshToken })
+            }).then(res => res.json()).then(data => {
+                if(data.error) return;
+                dispatch(setProfileModifyToken(data.access_token));
+            })
+        }
     }, []);
 
     // Setting profile tokens on localstorage change
@@ -63,8 +76,23 @@ export const AuthProvider: React.FC<{
         return data;
     }
 
+    // Function to post information to Spotify
+    const post = async function<T>(query: string, body: Object) {
+        const response = await fetch(query, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${modifyToken}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: JSON.stringify(body)
+        });
+        const data: T = await response.json();
+        return data;
+    }
+
     const value = {
-        get
+        get,
+        post
     }
     return(
         <AuthContext.Provider value={value}>
