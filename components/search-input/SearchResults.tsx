@@ -1,7 +1,6 @@
 import { useAuth } from '@/contexts/auth/AuthProvider';
 import { Artist, Track } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
-import { SearchResult as SearchResultType } from './';
 import styles from './SearchInput.module.scss';
 import { SearchResult } from './SearchResult';
 
@@ -10,12 +9,12 @@ type ResultItem = {
     name: string;
     image: string;
     extra: string;
-    fullItem: SearchResultType;
+    fullItem: Track | Artist;
 }
 export const SearchResults: React.FC<{
     query: string;
     type: 'track' | 'artist';
-    onClick: (result: SearchResultType) => void;
+    onClick: (result: Track | Artist) => void;
 }> = ({ query, type, onClick }) => {
     const { get } = useAuth();
     const [results, setResults] = useState<ResultItem[]>([]);
