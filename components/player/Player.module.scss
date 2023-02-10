@@ -6,6 +6,38 @@
     flex-direction: column;
     gap: 14px;
     user-select: none;
+    position: relative;
+
+    &:hover {
+        .playlist-button-container {
+            opacity: 1;
+        }
+    }
+}
+.playlist-button-container {
+    position: absolute !important;
+    top: var(--spacing-primary);
+    right: var(--spacing-primary);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .2s;
+}
+.playlist-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: var(--border-radius-secondary);
+    background-color: var(--background-tertiary);
+    transition: background-color .2s;
+
+    svg {
+        width: 25px;
+    }
+
+    &:hover {
+        background-color: var(--background-quaternary);
+    }
 }
 .image {
     width: 100%;

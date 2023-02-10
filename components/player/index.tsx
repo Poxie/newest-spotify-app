@@ -1,21 +1,27 @@
+import { useModal } from "@/contexts/modal/ModalProvider";
+import { ExtraAccessModal } from "@/modals/extra-access";
+import { PlaylistsModal } from "@/modals/playlists";
 import { Track } from "@/types";
 import Image from "next/image";
 import styles from './Player.module.scss';
 import { PlayerButton } from "./PlayerButton";
 import { PlayerControls } from "./PlayerControls";
 import { PlayerMain } from "./PlayerMain";
+import { PlayerPlaylistButton } from "./PlayerPlaylistButton";
 
 export const Player: React.FC<Partial<Track> & {
     className?: string;
     loading?: boolean;
-}> = ({ loading, uri, preview_url, name, artists, album, className }) => {
+}> = ({ loading, uri, preview_url, id, name, artists, album, className }) => {
+    const { setModal } = useModal();
+
     className = [
         styles['container'],
         className ? className : ''
     ].join(' ');
     
     // Showing loading placeholder
-    if(loading || !album || !artists || !name || !uri) {
+    if(loading || !album || !artists || !name || !uri || !id) {
         return(
             <div className={className}>
                 <div className={styles['image']}/>
@@ -35,6 +41,9 @@ export const Player: React.FC<Partial<Track> & {
     const artist = artists[0];
     return(
         <div className={className}>
+            <PlayerPlaylistButton 
+                uri={uri}
+            />
             <a 
                 className={styles['image']}
                 href={uri}
