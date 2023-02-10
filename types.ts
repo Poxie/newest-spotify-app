@@ -8,7 +8,7 @@ export type PlayList = {
     id: string;
     images: Image[];
     name: string;
-    owner: Artist;
+    owner: User;
     snapshot_id: string;
     tracks: {href: string, total: number};
     type: string;
@@ -77,6 +77,17 @@ export type Artist = {
         total: number;
     }
     genres: string[];
+}
+
+export type User = {
+    display_name: string;
+    external_urls: {
+        spotify: string;
+    }
+    href: string;
+    id: string
+    type: string;
+    uri: string;
 }
 
 export type Image = {
