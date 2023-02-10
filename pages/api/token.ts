@@ -5,13 +5,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if(req.method !== 'POST') return res.status(400).json({ error: 400, message: 'Request method not allowed.' });
 
     // Getting code
-    const { code } = JSON.parse(req.body) as { code?: string };
+    const { code, redirect_uri } = JSON.parse(req.body) as { code?: string, redirect_uri?: string };
     if(!code) return res.status(400).json({ error: 400, message: 'Code not present.' });
+    if(!redirect_uri) return res.status(400).json({ error: 400, message: 'redirect_uri is not present.' });
 
     // Creating request body
     const body = new URLSearchParams();
     body.append('grant_type', 'authorization_code');
-    body.append('redirect_uri', process.env.NEXT_PUBLIC_REDIRECT_URI);
+    body.append('redirect_uri', redirect_uri);
     body.append('code', code);
 
     // Fetcahing access token
