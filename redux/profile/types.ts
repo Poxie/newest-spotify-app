@@ -3,6 +3,7 @@ import { Artist, TopTimeFrame, Track } from "@/types";
 export type ProfileState = {
     token: string | null;
     refreshToken: string | null;
+    modifyToken: string | null;
     loading: boolean;
     topTracks: {
         timeFrame: TopTimeFrame;

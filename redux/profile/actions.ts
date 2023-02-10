@@ -1,10 +1,14 @@
 import { Artist, TopTimeFrame, Track } from "@/types";
-import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
+import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_MODIFY_TOKEN, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileTopGenre, ProfileTopType } from "./types";
 
 export const setProfileTokens = (token: string | null, refreshToken: string | null) => ({
     type: SET_PROFILE_TOKENS,
     payload: { token, refreshToken }
+})
+export const setProfileModifyToken = (token: string) => ({
+    type: SET_PROFILE_MODIFY_TOKEN,
+    payload: token
 })
 export const setProfileTop = (type: ProfileTopType, items: Track[] | Artist[] | ProfileTopGenre[], timeFrame: TopTimeFrame) => ({
     type: SET_PROFILE_TOP,

@@ -3,6 +3,7 @@ import { RootState } from "../store";
 
 export const selectProfileToken = (state: RootState) => state.profile.token;
 export const selectProfileTokenLoading = (state: RootState) => state.profile.loading;
+export const selectProfileModifyToken = (state: RootState) => state.profile.modifyToken;
 
 export const selectTopArtists = (state: RootState, timeFrame: TopTimeFrame) => state.profile.topArtists.items[timeFrame];
 export const selectTopArtistsTimeFrame = (state: RootState) => state.profile.topArtists.timeFrame;

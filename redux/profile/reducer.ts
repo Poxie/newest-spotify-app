@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { createReducer, updateObject } from "../utils";
-import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
+import { ADD_PROFILE_RECOMMENDATIONS, SET_PROFILE_MODIFY_TOKEN, SET_PROFILE_RECOMMENDATIONS, SET_PROFILE_RECOMMENDATIONS_TIME_FRAME, SET_PROFILE_TOKENS, SET_PROFILE_TOP, SET_PROFILE_TOP_TIME_FRAME } from "./constants";
 import { ProfileState, ProfileTopType } from "./types";
 
 // Function to get property key based on top type
@@ -13,13 +13,21 @@ const getPropertyName = (type: ProfileTopType) => {
 // Creating reducer actions
 type ReducerAction = (state: ProfileState, action: AnyAction) => ProfileState;
 
-const setProfileTokens: ReducerAction = (state, action) => {
+const setProfileToken: ReducerAction = (state, action) => {
     const { token, refreshToken } = action.payload;
     return updateObject(state, {
         ...state,
         token,
         refreshToken,
         loading: false
+    })
+}
+
+const setProfileModifyTokens: ReducerAction = (state, action) => {
+    const token = action.payload;
+    return updateObject(state, {
+        ...state,
+        modifyToken: token
     })
 }
 
@@ -93,13 +101,15 @@ const addProfileRecommendations: ReducerAction = (state, action) => {
 export const profileReducer = createReducer({
     token: null,
     refreshToken: null,
+    modifyToken: null,
     loading: true,
     topArtists: { timeFrame: 'long_term', items: {} },
     topTracks: { timeFrame: 'long_term', items: {} },
     topGenres: { timeFrame: 'long_term', items: {} },
     recommendations: { artistTimeFrame: 'long_term', trackTimeFrame: 'long_term', items: null }
 }, {
-    [SET_PROFILE_TOKENS]: setProfileTokens,
+    [SET_PROFILE_TOKENS]: setProfileToken,
+    [SET_PROFILE_MODIFY_TOKEN]: setProfileModifyTokens,
     [SET_PROFILE_TOP]: setProfileTop,
     [SET_PROFILE_TOP_TIME_FRAME]: setProfileTopTimeFrame,
     [SET_PROFILE_RECOMMENDATIONS_TIME_FRAME]: setProfileRecommendationsTimeFrame,
