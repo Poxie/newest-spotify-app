@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import styles from './Player.module.scss';
 
 export const PlayerText: React.FC<{
     name: string;
     artist: string;
     uri: string;
-}> = ({ name, artist, uri }) => {
+}> = memo(({ name, artist, uri }) => {
     return(
         <div className={styles['text']}>
             <a 
@@ -23,4 +24,4 @@ export const PlayerText: React.FC<{
             </a>
         </div>
     )
-}
+});
