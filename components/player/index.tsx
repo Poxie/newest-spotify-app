@@ -1,7 +1,9 @@
 import { Track } from "@/types";
 import Image from "next/image";
 import styles from './Player.module.scss';
+import { PlayerButton } from "./PlayerButton";
 import { PlayerControls } from "./PlayerControls";
+import { PlayerMain } from "./PlayerMain";
 
 export const Player: React.FC<Partial<Track> & {
     className?: string;
@@ -13,15 +15,18 @@ export const Player: React.FC<Partial<Track> & {
     ].join(' ');
     
     // Showing loading placeholder
-    if(loading || !album || !artists) {
+    if(loading || !album || !artists || !name || !uri) {
         return(
             <div className={className}>
                 <div className={styles['image']}/>
-                <div className={styles['text']}>
-                    <div className={styles['name-loading']} />
-                    <div className={styles['artist-loading']} />
+                <div className={styles['main']}>
+                    <PlayerButton />
+                    <div className={styles['text']}>
+                        <div className={styles['name-loading']} />
+                        <div className={styles['artist-loading']} />
+                    </div>
                 </div>
-                <PlayerControls previewURL="" />
+                <PlayerControls />
             </div>
         )
     }
@@ -40,24 +45,11 @@ export const Player: React.FC<Partial<Track> & {
                     fill
                 />
             </a>
-            <div className={styles['text']}>
-                <a 
-                    title={name}
-                    className={styles['name']} 
-                    href={uri}
-                >
-                    {name}
-                </a>
-                <a 
-                    title={artist.name}
-                    className={styles['artist']}
-                    href={artist.uri}
-                >
-                    {artist.name}
-                </a>
-            </div>
-            <PlayerControls 
-                previewURL={preview_url || ''}
+            <PlayerMain 
+                name={name}
+                artist={artist.name}
+                uri={uri}
+                previewURL={preview_url}
             />
         </div>
     )

@@ -1,61 +1,27 @@
 import styles from './Player.module.scss';
-import { PlayerButton } from './PlayerButton';
-import { ShuffleIcon } from '../../assets/icons/ShuffleIcon';
-import { ReverseIcon } from '../../assets/icons/ReverseIcon';
-import { PauseIcon } from '../../assets/icons/PauseIcon';
-import { PlayIcon } from '../../assets/icons/PlayIcon';
-import { RepeatIcon } from '../../assets/icons/RepeatIcon';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePlayer } from './PlayerMain';
 
 const DURATION = 30 * 1000;
-export const PlayerControls: React.FC<{
-    previewURL: string;
-}> = ({ previewURL }) => {
+export const PlayerControls = () => {
+    const { togglePlay, playing, setTime, audio } = usePlayer();
     const [current, setCurrent] = useState(0);
-    const [playing, setPlaying] = useState(false);
-    const [errored, setErrored] = useState(false);
-    const audio = useRef<HTMLAudioElement | null>(null);
     const container = useRef<HTMLDivElement>(null);
     const mouseDown = useRef(false);
 
-    // Function to toggle play, create audio instance if necessary
-    const play = useCallback(() => {
-        if(!audio.current) {
-            setCurrent(0);
-            audio.current = new Audio(previewURL);
-        }
-
-        if(!playing) {
-            audio.current.play()
-                .then(() => {
-                    setPlaying(true);
-                })
-                .catch(error => {
-                    // Cannot play audio preview
-                    setErrored(true);
-                })
-        } else {
-            audio.current.pause();
-            setPlaying(false);
-        }
-    }, [audio.current, playing]);
-
     // Making sure to reset player on end
     useEffect(() => {
-        if(!audio.current) return;
+        if(!audio) return;
 
-        const onEnd = () => {
-            setPlaying(false);
-            setCurrent(0);
-        }
+        // On audio first play, reset track
+        setCurrent(0);
 
-        audio.current.addEventListener('ended', onEnd);
-        return () => {
-            if(!audio.current) return;
-            audio.current.removeEventListener('ended', onEnd);
-            audio.current.pause();
-        }
-    }, [audio.current]);
+        // Resetting track on end
+        const onEnd = () => setCurrent(0);
+        
+        audio.addEventListener('ended', onEnd);
+        return () => audio.removeEventListener('ended', onEnd);
+    }, [audio]);
 
     // Setting and clearing track interval based on playing state
     useEffect(() => {
@@ -71,9 +37,7 @@ export const PlayerControls: React.FC<{
         }
 
         return () => {
-            if(interval) {
-                clearInterval(interval);
-            }
+            if(interval) clearInterval(interval);
         }
     }, [playing]);
 
@@ -88,8 +52,10 @@ export const PlayerControls: React.FC<{
         const currentTime = Math.floor(percentage * DURATION);
         setCurrent(currentTime);
 
-        if(!audio.current) return;
-        audio.current.currentTime = currentTime / 1000;
+        // If player is loading, setTime will be undefined
+        if(setTime) {
+            setTime(currentTime / 1000);
+        }
     }, []);
     const handleMouseMove = useCallback((e: MouseEvent) => {
         changeCurrentTime(e);
@@ -109,61 +75,31 @@ export const PlayerControls: React.FC<{
     const currentTime = currentSeconds < 10 ? `0${currentSeconds}` : currentSeconds;
     const percentage = (current / DURATION) * 100;
     return(
-        <>
-            <div className={styles['progress']}>
+        <div className={styles['progress']}>
+            <div 
+                className={styles['progress-bar']}
+                onMouseDown={handleMouseDown}
+                onClick={changeCurrentTime}
+                ref={container}
+            >
+                <div className={styles['bar']} />
                 <div 
-                    className={styles['progress-bar']}
-                    onMouseDown={handleMouseDown}
-                    onClick={changeCurrentTime}
-                    ref={container}
-                >
-                    <div className={styles['bar']} />
-                    <div 
-                        className={styles['bar'] + ' ' + styles['filled']}
-                        style={{width: `${percentage}%`}}
-                    />
-                    <div 
-                        style={{left: `${percentage - 2}%`}}
-                        className={styles['dot']}
-                    />
-                </div>
-                <div className={styles['progress-time']}>
-                    <span>
-                        0:{currentTime}
-                    </span>
-                    <span>
-                        0:{Math.floor(DURATION / 1000)}
-                    </span>
-                </div>
-            </div>
-            <div className={styles['control-buttons']}>
-                <PlayerButton 
-                    icon={<ShuffleIcon />}
-                    ariaHidden={true}
+                    className={styles['bar'] + ' ' + styles['filled']}
+                    style={{width: `${percentage}%`}}
                 />
-                <PlayerButton 
-                    icon={<ReverseIcon />}
-                    ariaHidden={true}
-                />
-                <PlayerButton 
-                    icon={playing ? <PauseIcon /> : <PlayIcon />}
-                    ariaLabel={playing ? 'Pause preview' : 'Play preview'}
-                    onClick={play}
-                    style={{ 
-                        pointerEvents: errored ? 'none' : 'all',
-                        cursor: errored ? 'default' : 'pointer'
-                    }}
-                />
-                <PlayerButton 
-                    icon={<ReverseIcon />}
-                    ariaHidden={true}
-                    style={{ transform: 'rotate(180deg)' }}
-                />
-                <PlayerButton 
-                    icon={<RepeatIcon />}
-                    ariaHidden={true}
+                <div 
+                    style={{left: `${percentage - 2}%`}}
+                    className={styles['dot']}
                 />
             </div>
-        </>
+            <div className={styles['progress-time']}>
+                <span>
+                    0:{currentTime}
+                </span>
+                <span>
+                    0:{Math.floor(DURATION / 1000)}
+                </span>
+            </div>
+        </div>
     )
 }

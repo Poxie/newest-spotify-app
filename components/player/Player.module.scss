@@ -1,5 +1,5 @@
 .container {
-    padding: var(--spacing-primary);
+    padding: var(--spacing-secondary);
     background-color: var(--background-secondary);
     border-radius: var(--border-radius-primary);
     display: flex;
@@ -21,10 +21,35 @@
         object-fit: cover;
     }
 }
+.main {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-tertiary);
+}
+.play-button {
+    --size: 42px;
+    min-width: var(--size);
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+        width: 50%;
+        fill: var(--text-light-primary);
+        display: block;
+    }
+}
 .text {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
+    overflow: hidden;
 }
 .name-loading, .artist-loading {
     background-color: var(--background-tertiary);
@@ -47,17 +72,6 @@
 .artist {
     color: var(--text-secondary);
     font-size: 12px;
-}
-.control-buttons, .control-buttons button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    svg {
-        width: 18px;
-        height: 18px;
-        display: block;
-    }
 }
 .progress {
     &:hover {

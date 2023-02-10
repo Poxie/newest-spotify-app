@@ -1,24 +1,17 @@
-import React, { ReactElement } from 'react';
-import { CSSProperties } from "react";
+import styles from './Player.module.scss';
+import { PauseIcon } from "@/assets/icons/PauseIcon";
+import { PlayIcon } from "@/assets/icons/PlayIcon";
+import { usePlayer } from "./PlayerMain"
 
-export const PlayerButton: React.FC<{
-    icon: ReactElement;
-    onClick?: () => void;
-    ariaLabel?: string;
-    ariaHidden?: boolean;
-    style?: CSSProperties;
-}> = React.memo(({ icon, onClick, style, ariaLabel, ariaHidden=false }) => {
-    if(style && ariaHidden) return <div style={style}>{icon}</div>
-    if(ariaHidden) return icon;
-
+export const PlayerButton = () => {
+    const { playing, togglePlay } = usePlayer();
+    
     return(
         <button 
-            aria-label={ariaLabel}
-            aria-hidden={ariaHidden}
-            onClick={onClick}
-            style={style}
+            onClick={togglePlay}
+            className={styles['play-button']}
         >
-            {icon}
+            {playing ? <PauseIcon /> : <PlayIcon />}
         </button>
     )
-});
+}
