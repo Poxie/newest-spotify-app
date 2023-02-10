@@ -1,0 +1,24 @@
+.tooltip {
+    position: relative;
+    
+    &::after {
+        content: attr(data-tooltip-content);
+        position: absolute;
+        bottom: calc(100% + 15px);
+        padding: 7px 12px;
+        border-radius: 8px;
+        left: 50%;
+        transform: translateX(-50%) scale(.7);
+        opacity: 0;
+        transition: opacity .2s, transform .2s;
+        white-space: nowrap;
+        background-color: var(--background-quaternary);
+        font-weight: 600;
+        pointer-events: none;
+        font-size: 14px;
+    }
+    &:hover::after {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
