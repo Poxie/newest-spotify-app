@@ -1,11 +1,11 @@
 import { selectAuthToken } from '@/redux/auth/selectors';
-import { setProfileTokens } from '@/redux/profile/actions';
-import { selectProfileToken } from '@/redux/profile/selectors';
+import { setProfileModifyToken, setProfileTokens } from '@/redux/profile/actions';
+import { selectProfileModifyToken, selectProfileToken } from '@/redux/profile/selectors';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import React, { ReactElement, useEffect } from 'react';
 
 const AuthContext = React.createContext({} as {
-    get: <T>(query: string) => Promise<T>;
+    get: <T>(query: string, modify?: boolean) => Promise<T>;
 });
 
 export const useAuth = () => React.useContext(AuthContext);
@@ -16,6 +16,7 @@ export const AuthProvider: React.FC<{
     const dispatch = useAppDispatch();
     const token = useAppSelector(selectAuthToken);
     const profileToken = useAppSelector(selectProfileToken);
+    const modifyToken = useAppSelector(selectProfileModifyToken);
 
     // Fetching profile token on mount
     useEffect(() => {
@@ -38,12 +39,23 @@ export const AuthProvider: React.FC<{
         })
     }, []);
 
+    // Setting profile tokens on localstorage change
+    useEffect(() => {
+        const onChange = (e: StorageEvent) => {
+            if(!e.newValue || e.key !== 'modifyToken') return;
+            dispatch(setProfileModifyToken(e.newValue));
+        }
+
+        window.addEventListener('storage', onChange);
+        return () => window.removeEventListener('storage', onChange);
+    }, []);
+
     // Function to get information from Spotify
-    const get = async function<T>(query: string) {
+    const get = async function<T>(query: string, modify?: boolean) {
         const response = await fetch(query, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${profileToken || token}`,
+                'Authorization': `Bearer ${(modify ? modifyToken : profileToken) || token}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
