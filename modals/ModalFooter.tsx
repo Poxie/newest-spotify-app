@@ -9,7 +9,8 @@ export const ModalFooter: React.FC<{
     cancelLabel?: string;
     closeOnCancel?: boolean;
     closeOnConfirm?: boolean;
-}> = ({ onCancel, onConfirm, closeOnCancel, closeOnConfirm, confirmLabel='Confirm', cancelLabel='Cancel' }) => {
+    confirmDisabled?: boolean;
+}> = ({ onCancel, onConfirm, closeOnCancel, closeOnConfirm, confirmDisabled, confirmLabel='Confirm', cancelLabel='Cancel' }) => {
     const { close } = useModal();
     
     return(
@@ -26,6 +27,7 @@ export const ModalFooter: React.FC<{
             <Button 
                 type={'transparent'}
                 onClick={() => {
+                    if(confirmDisabled) return;
                     if(closeOnConfirm) close();
                     if(onConfirm) onConfirm();
                 }}
