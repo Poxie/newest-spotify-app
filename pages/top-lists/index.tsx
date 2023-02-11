@@ -1,4 +1,5 @@
 import { useAuth } from "@/contexts/auth/AuthProvider";
+import { useToast } from "@/contexts/toast/ToastProvider";
 import { setAuthToken } from "@/redux/auth/actions";
 import { selectAuthToken } from "@/redux/auth/selectors";
 import { RootState, useAppDispatch, useAppSelector, wrapper } from "@/redux/store";
@@ -12,6 +13,7 @@ import TopListsPage from '../../components/top-lists';
 
 export default function TopLists() {
   const { get } = useAuth();
+  const { setToast } = useToast();
   const dispatch = useAppDispatch();
   const token = useAppSelector(selectAuthToken);
   const query = useRouter().query as { country?: string };
@@ -31,6 +33,10 @@ export default function TopLists() {
     // Checking if playlist is returned
     if(!response.playlists.items.length) {
       // Playlist was not found; not tracks can be displayed
+      setToast({
+        text: 'Something went wrong while fetching songs',
+        type: 'error'
+      })
       return;
     }
 
