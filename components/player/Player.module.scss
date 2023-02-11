@@ -148,3 +148,9 @@
     font-size: 11px;
     color: var(--text-secondary);
 }
+
+@media (max-width: 700px) {
+    .playlist-button-container {
+        opacity: 1;
+    }
+}
