@@ -8,18 +8,15 @@
     top: 0;
 }
 .container {
+    --default-height: 90%;
     background-color: var(--background-primary);
-    border-radius: var(--border-radius-primary);
     padding: var(--spacing-secondary);
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 1000001;
     width: 650px;
-    max-height: 90%;
     overflow: auto;
-    max-width: var(--width-main-max);
+    display: flex;
+    flex-direction: column;
 }
 .header {
     margin: 0;
@@ -31,4 +28,11 @@
     display: flex;
     justify-content: flex-end;
     margin-top: var(--spacing-secondary);
+}
+
+@media (max-width: 500px) {
+    .footer>button {
+        flex: 1;
+        justify-content: center;
+    }
 }
