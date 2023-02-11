@@ -16,7 +16,7 @@ export default function Modal({
         maxWidth: small ? '100%' : 'var(--width-main-max)', 
         borderRadius: small ? 0 : 'var(--border-radius-primary)',
         maxHeight: small ? '100vh' : 'var(--default-height)',
-        height: small ? '100vh' : 'var(--default-height)'
+        height: small ? '100vh' : 'unset'
     };
     const initial = { opacity: small ? 1 : 0, scale: small ? 1 : .4, translateX: small ? 0 : '-50%', translateY: small ? '150%' : '-50%' };
     const animate = { opacity: 1, scale: 1, translateX: small ? 0 : '-50%', translateY: small ? 0 : '-50%' };
