@@ -44,6 +44,7 @@ export const TopListsTrack: React.FC<{
                 <a 
                     className={styles['track-image']}
                     href={uri}
+                    aria-label="Go to song"
                 >
                     <Image 
                         src={image}

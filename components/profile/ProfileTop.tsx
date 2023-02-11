@@ -57,6 +57,7 @@ export const ProfileTop: React.FC<{
                         uri={item.uri}
                         image={getItemImage(type, item)}
                         index={key}
+                        type={type}
                         key={item.id}
                     />
                 )

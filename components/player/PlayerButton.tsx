@@ -3,7 +3,9 @@ import { PauseIcon } from "@/assets/icons/PauseIcon";
 import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { usePlayer } from "./PlayerMain"
 
-export const PlayerButton = () => {
+export const PlayerButton: React.FC<{
+    loading?: boolean;
+}> = ({ loading }) => {
     const { playing, togglePlay, errored } = usePlayer();
     
     return(
@@ -11,6 +13,7 @@ export const PlayerButton = () => {
             onClick={togglePlay}
             className={styles['play-button']}
             style={{ pointerEvents: errored ? 'none' : 'unset' }}
+            aria-label={playing ? 'Pause' : 'Play'}
         >
             {playing ? <PauseIcon /> : <PlayIcon />}
         </button>

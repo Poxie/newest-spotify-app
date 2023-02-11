@@ -24,6 +24,7 @@ export const SearchInput: React.FC<{
                 onChange={setQuery}
                 onFocus={setFocusTrue}
                 onBlur={setFocusFalse}
+                name={type}
             />
 
             {focus && query && (

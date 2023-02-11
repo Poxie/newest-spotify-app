@@ -6,12 +6,14 @@ export const ProfileTopItem: React.FC<{
     image: string;
     uri: string;
     index: number;
-}> = ({ text, image, uri, index }) => {
+    type: 'artists' | 'tracks';
+}> = ({ text, image, uri, index, type }) => {
     return(
-        <div className={styles['top-item']}>
+        <li className={styles['top-item']}>
             <a 
                 className={styles['item-image']}
                 href={uri}
+                aria-label={`Go to ${type.slice(0, type.length - 1)}`}
             >
                 <Image 
                     src={image}
@@ -23,6 +25,6 @@ export const ProfileTopItem: React.FC<{
             <a href={uri}>
                 {text}
             </a>
-        </div>
+        </li>
     )
 }
