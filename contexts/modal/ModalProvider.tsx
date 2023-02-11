@@ -16,9 +16,13 @@ export const ModalProvider: React.FC<{
 
     const _setModal = (modal: ReactElement) => {
         setModal(modal);
+        document.body.style.overflow = 'hidden';
     }
 
-    const close = () => setModal(null);
+    const close = () => {
+        setModal(null);
+        document.body.style.overflow = '';
+    }
 
     const value = {
         setModal: _setModal,
