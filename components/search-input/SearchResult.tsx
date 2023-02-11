@@ -13,22 +13,22 @@ export const SearchResult: React.FC<{
             className={styles['result']} 
             onClick={onClick}
         >
-            <div className={styles['result-main']}>
-                <div className={styles['result-image']}>
-                    <Image 
-                        src={image}
-                        height={60}
-                        width={60}
-                        alt=""
-                    />
-                </div>
+            <div className={styles['result-image']}>
+                <Image 
+                    src={image}
+                    height={60}
+                    width={60}
+                    alt=""
+                />
+            </div>
+            <div className={styles['result-text']}>
                 <span>
                     {name}
                 </span>
+                <span className={styles['result-extra']}>
+                    {extra}
+                </span>
             </div>
-            <span className={styles['result-extra']}>
-                {extra}
-            </span>
         </div>
     )
 }
