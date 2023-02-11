@@ -9,6 +9,7 @@ import { ModalFooter } from "../ModalFooter";
 import { ModalHeader } from "../ModalHeader";
 import { PlaylistItem } from "./PlaylistItem";
 import { useModal } from '@/contexts/modal/ModalProvider';
+import { useToast } from '@/contexts/toast/ToastProvider';
 
 const PLACEHOLDER_COUNT = 20;
 export const PlaylistsModal: React.FC<{
@@ -16,6 +17,7 @@ export const PlaylistsModal: React.FC<{
 }> = ({ trackUri }) => {
     const { close } = useModal();
     const { get, post } = useAuth();
+    const { setToast } = useToast();
     const modifyToken = useAppSelector(selectProfileModifyToken);
     const [items, setItems] = useState<PlayList[] | null>(null);
     const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -38,9 +40,19 @@ export const PlaylistsModal: React.FC<{
         
         // Success
         if(response.snapshot_id) {
+            setToast({
+                text: 'Added song to playlist',
+                type: 'info'
+            })
             close();
             return;
         }
+
+        // Error
+        setToast({
+            text: 'Error adding song to playlist',
+            type: 'error'
+        })
     }
 
     return(
