@@ -16,7 +16,7 @@ export const HomeMainText = () => {
                 </Button>
                 <Button 
                     type={'secondary'}
-                    href={'/explore'}
+                    href={'/explore/songs'}
                 >
                     Explore mode
                 </Button>

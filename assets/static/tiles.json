@@ -1,5 +1,5 @@
 [
     { "title": "View top lists all around the world", "text": "There are different music cultures all around the world. Perhaps it’s time to explore some of those?", "image": "/home/tile1.png", "path": "/top-lists", "buttonText": "View top lists" },
     { "title": "View your personal music statistics", "text": "View your own listening statistics, including recently played songs, and most listened songs artists.", "image": "/home/tile2.png", "path": "/profile", "buttonText": "View your stats" },
-    { "title": "Expand your playlists with your own taste", "text": "Get personalized recommendations based on your recently listened songs, or your all-time favorites.", "image": "/home/tile3.png", "path": "/explore", "buttonText": "Get recommendations" }
+    { "title": "Expand your playlists with your own taste", "text": "Get personalized recommendations based on your recently listened songs, or your all-time favorites.", "image": "/home/tile3.png", "path": "/explore/songs", "buttonText": "Get recommendations" }
 ]
