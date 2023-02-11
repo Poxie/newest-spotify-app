@@ -8,7 +8,7 @@ export const NavbarTab: React.FC<{
 }> = ({ text, path }) => {
     const router = useRouter();
 
-    const active = router.asPath === path;
+    const active = router.pathname === path;
     return(
         <li>
             <Link 
