@@ -32,6 +32,7 @@
     display: flex;
     gap: var(--spacing-secondary);
     width: 32%;
+    overflow: hidden;
 }
 .preview-image {
     position: relative;
