@@ -21,8 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { email, message } = JSON.parse(req.body);
     
-    if(!email) res.status(400).send({ message: 'Email is required.' });
-    if(!message) res.status(400).send({ message: 'Message is required.' });
+    if(!email) return res.status(400).send({ message: 'Email is required.' });
+    if(!message) return res.status(400).send({ message: 'Message is required.' });
 
     mailOptions.text = `${email} said: ${message}`;
 
