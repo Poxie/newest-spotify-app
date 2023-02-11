@@ -16,23 +16,25 @@
     border-radius: var(--border-radius-primary);
     box-shadow: 0 1px 4px 0 rgb(0 0 0 / 30%);
     display: grid;
-    padding: 10px;
+    padding: var(--spacing-tertiary);
 
     &::-webkit-scrollbar {
-        width: 6px;
-        background-color: var(--background-tertiary);
+        width: 18px;
     }
     &::-webkit-scrollbar-thumb {
-        background-color: var(--background-quaternary);
+        background-color: var(--background-tertiary);
         border-radius: 120px;
+        border: 4px solid var(--background-secondary);
     }
 }
 .result {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: var(--spacing-tertiary);
     cursor: pointer;
+    border-radius: var(--border-radius-primary);
+    transition: background-color .2s;
 
     &:hover {
         background-color: var(--background-tertiary);
@@ -46,7 +48,18 @@
 .result-image {
     border-radius: var(--border-radius-primary);
     overflow: hidden;
+    min-width: 60px;
+    width: 60px;
+    aspect-ratio: 1;
+    position: relative;
+    
+    img {
+        display: block;
+        object-fit: cover;
+        min-width: 100%;
+    }
 }
 .result-extra {
     font-size: 14px;
+    white-space: nowrap;
 }
