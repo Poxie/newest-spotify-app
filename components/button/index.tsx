@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
 
-export default function Button({ children, style, onClick, href, ariaLabel, target, external=false, className='', type='default', buttonType='button' }: {
+export default function Button({ children, style, onClick, href, ariaLabel, target, external=false, className='', type='default', buttonType='button', disabled=false }: {
     children: any;
     type?: 'default' | 'secondary' | 'hollow' | 'transparent';
     className?: string;
@@ -12,7 +12,8 @@ export default function Button({ children, style, onClick, href, ariaLabel, targ
     external?: boolean;
     ariaLabel?: string;
     target?: AnchorHTMLAttributes<''>['target'];
-    buttonType?: ButtonHTMLAttributes<''>['type']
+    buttonType?: ButtonHTMLAttributes<''>['type'];
+    disabled?: boolean;
 }) {
     className = [
         className,
@@ -25,7 +26,8 @@ export default function Button({ children, style, onClick, href, ariaLabel, targ
         style,
         onClick,
         type: buttonType,
-        'aria-label': ariaLabel
+        'aria-label': ariaLabel,
+        disabled
     }
     const linkProps = {
         href: href || '',
