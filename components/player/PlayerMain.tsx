@@ -3,6 +3,7 @@ import React, { ReactElement, useCallback, useRef, useState } from 'react';
 import { PlayerButton } from './PlayerButton';
 import { PlayerControls } from './PlayerControls';
 import { PlayerText } from './PlayerText';
+import { useToast } from '@/contexts/toast/ToastProvider';
 
 type Context = {
     setTime: (ms: number) => void;
@@ -20,6 +21,7 @@ export const PlayerMain: React.FC<{
     uri: string;
     previewURL?: string;
 }> = ({ name, artist, uri, previewURL }) => {
+    const { setToast } = useToast();
     const [playing, setPlaying] = useState(false);
     const [errored, setErrored] = useState(false);
     const audio = useRef<HTMLAudioElement | null>(null);
@@ -42,6 +44,11 @@ export const PlayerMain: React.FC<{
                 .catch(error => {
                     // Cannot play audio preview
                     setErrored(true);
+
+                    setToast({
+                        text: 'Unable to play song preview',
+                        type: 'error'
+                    })
                 })
         } else {
             audio.current.pause();
