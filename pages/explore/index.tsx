@@ -7,7 +7,10 @@ export default function Explore() {
     return (
         <>
             <Head>
-                <title></title>
+                <title>
+                    {`Explore - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}
+                </title>
+                <meta name="og:title" content={`Explore - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>

@@ -85,8 +85,10 @@ export default function Login() {
     return(
         <>
         <Head>
-            <title>Login with Spotify</title>
+            <title>{`Login with Spotify - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}</title>
+            <meta name="og:title" content={`Login with Spotify - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`} />
             <meta name="description" content="Login to view your top songs, artists and genres." />
+            <meta name="og:description" content="Login to view your top songs, artists and genres." />
         </Head>
         <main style={{
             height: `calc(100vh - var(--footer-height))`,

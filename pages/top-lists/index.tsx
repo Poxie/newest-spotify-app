@@ -64,7 +64,10 @@ export default function TopLists() {
   return (
     <>
       <Head>
-        <title></title>
+        <title>{`Toplists - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}</title>
+        <meta name="og:title" content={`Toplists - ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`} />
+        <meta name="description" content="Explore what countries all around the world listens to; global and country specific top lists." />
+        <meta name="og:description" content="Explore what countries all around the world listens to; global and country specific top lists." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
