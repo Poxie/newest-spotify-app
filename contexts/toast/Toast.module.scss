@@ -1,7 +1,8 @@
 .container {
     position: fixed;
     bottom: var(--spacing-secondary);
-    left: var(--spacing-secondary);
+    left: 50%;
+    transform: translateX(-50%);
     padding: var(--spacing-secondary);
     background-color: var(--background-tertiary);
     border-radius: var(--border-radius-primary);

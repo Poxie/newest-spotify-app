@@ -12,9 +12,9 @@ export const Toast: React.FC<ToastType> = ({ text, type='info', duration=DEFAULT
     return(
         <motion.div 
             className={className}
-            initial={{ translateY: '150%' }}
-            exit={{ translateY: '150%' }}
-            animate={{ translateY: 0 }}
+            initial={{ translateY: '150%', translateX: '-50%' }}
+            exit={{ translateY: '150%', translateX: '-50%' }}
+            animate={{ translateY: 0, translateX: '-50%' }}
             style={{ '--animation-duration': `${duration}ms` } as CSSProperties}
         >
             {text}
