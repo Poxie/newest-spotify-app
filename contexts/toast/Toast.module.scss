@@ -11,6 +11,7 @@
     overflow: hidden;
     font-size: 15px;
     font-weight: 600;
+    text-align: center;
     
     &::after {
         content: '';
@@ -37,5 +38,11 @@
     }
     to {
         width: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
     }
 }
