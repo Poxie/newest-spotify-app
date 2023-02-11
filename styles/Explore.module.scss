@@ -78,6 +78,13 @@
 
     a {
         font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        img {
+            border-radius: var(--border-radius-secondary);
+        }
 
         &:hover {
             text-decoration: underline;

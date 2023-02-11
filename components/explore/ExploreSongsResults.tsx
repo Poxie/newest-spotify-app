@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/store"
 import { Track } from "@/types";
 import { useEffect, useRef, useState } from "react";
 import { Player } from "../player";
+import Image from 'next/image';
 
 const PLACEHOLDER_COUNT = 12;
 export const ExploreSongsResults = () => {
@@ -80,14 +81,20 @@ export const ExploreSongsResults = () => {
             <h2 className={styles['recommendations-header']}>
                 Songs based on {' '}
                 {song ? (
-                    <a href={song?.uri}>{song?.name}</a>
+                    <a href={song.uri}>
+                        <Image src={song.album.images[1].url} alt="" width={25} height={25} />
+                        {song.name}
+                    </a>
                 ) : (
                     <div className={styles['recommendation-placeholder-text']} />
                 )} 
                 {' '}
                 and
                 {artist ? (
-                    <a href={artist?.uri}>{artist?.name}</a>
+                    <a href={artist.uri}>
+                        <Image src={artist.images[1].url} alt="" width={25} height={25} />
+                        {artist.name}
+                    </a>
                 ) : (
                     <div className={styles['recommendation-placeholder-text']} />
                 )}
