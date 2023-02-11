@@ -16,6 +16,7 @@ export const ProfileTopItem: React.FC<{
                 <Image 
                     src={image}
                     fill
+                    sizes="150px"
                     alt=""
                 />
             </a>

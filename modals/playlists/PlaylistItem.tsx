@@ -38,6 +38,7 @@ export const PlaylistItem: React.FC<{
                     <Image 
                         src={image}
                         alt=""
+                        sizes="120px"
                         fill
                     />
                 )}

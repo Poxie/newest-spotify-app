@@ -17,8 +17,9 @@ export const SearchResult: React.FC<{
                 <div className={styles['result-image']}>
                     <Image 
                         src={image}
+                        height={60}
+                        width={60}
                         alt=""
-                        fill
                     />
                 </div>
                 <span>

@@ -51,6 +51,7 @@ export const Player: React.FC<Partial<Track> & {
                 <Image 
                     src={image?.url}
                     alt={``}
+                    sizes="200px"
                     fill
                 />
             </a>

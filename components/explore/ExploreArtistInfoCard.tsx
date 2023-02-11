@@ -2,6 +2,8 @@ import styles from '../../styles/Explore.module.scss';
 import { Artist, Track } from "@/types"
 import Image from "next/image";
 
+const LARGE_IMAGE_SIZE = 150;
+const SMALL_IMAGE_SIZE = 80;
 export const ExploreArtistInfoCard: React.FC<{
     track?: Track;
     artist?: Artist;
@@ -44,7 +46,8 @@ export const ExploreArtistInfoCard: React.FC<{
                 {image && (
                     <Image 
                         src={image}
-                        fill
+                        width={small ? SMALL_IMAGE_SIZE : LARGE_IMAGE_SIZE}
+                        height={small ? SMALL_IMAGE_SIZE : LARGE_IMAGE_SIZE}
                         alt=""
                     />
                 )}

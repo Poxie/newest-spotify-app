@@ -25,8 +25,9 @@ export const ExploreSongsPreview: React.FC<{
                 {image && (
                     <Image 
                         src={image}
+                        width={100}
+                        height={100}
                         alt=""
-                        fill
                     />
                 )}
             </div>

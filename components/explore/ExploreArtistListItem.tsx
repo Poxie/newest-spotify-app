@@ -32,7 +32,8 @@ export const ExploreArtistListItem: React.FC<{
             >
                 <Image 
                     src={getItemImage(item)}
-                    fill
+                    width={25}
+                    height={25}
                     alt=""
                 />
             </a>

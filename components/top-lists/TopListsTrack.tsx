@@ -47,8 +47,9 @@ export const TopListsTrack: React.FC<{
                 >
                     <Image 
                         src={image}
+                        width={28}
+                        height={28}
                         alt=''
-                        fill
                     />
                 </a>
                 <a href={uri}>
