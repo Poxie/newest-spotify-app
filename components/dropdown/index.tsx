@@ -60,11 +60,10 @@ export const Dropdown: React.FC<{
                         />
                     )}
                     {selectableItems.map(item => (
-                        <li 
-                            onClick={() => selectItem(item)}
-                            key={item}
-                        >
-                            {item}
+                        <li key={item}>
+                            <button onClick={() => selectItem(item)}>
+                                {item}
+                            </button>
                         </li>
                     ))}
                 </ul>

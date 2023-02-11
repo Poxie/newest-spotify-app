@@ -12,12 +12,14 @@
         overflow: auto;
         max-height: 500px;
 
-        li {
+        button {
             padding: var(--item-padding);
             cursor: pointer;
             white-space: nowrap;
             font-size: 16px;
             font-weight: normal;
+            width: 100%;
+            text-align: unset;
 
             &:hover {
                 background-color: var(--background-tertiary);
