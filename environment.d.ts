@@ -8,6 +8,10 @@ declare global {
             NEXT_PUBLIC_API_ENDPOINT: string;
             NEXT_PUBLIC_AUTH_ENDPOINT: string;
             NEXT_PUBLIC_REDIRECT_URI: string;
+            EMAIL_SENDER: string;
+            EMAIL_PASSWORD: string;
+            EMAIL_RECEIVER: string;
+            EMAIL_SUBJECT: string;
             CLIENT_ID: string;
         }
     }
