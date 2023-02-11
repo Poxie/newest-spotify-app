@@ -47,6 +47,7 @@ export const Player: React.FC<Partial<Track> & {
             <a 
                 className={styles['image']}
                 href={uri}
+                aria-label="Go to song"
             >
                 <Image 
                     src={image?.url}

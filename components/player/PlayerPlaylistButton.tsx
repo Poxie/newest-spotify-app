@@ -33,6 +33,7 @@ export const PlayerPlaylistButton: React.FC<{
             <button 
                 className={styles['playlist-button']}
                 onClick={openPlaylistModal}
+                aria-label="Add to playlist"
             >
                 <PlaylistIcon />
             </button>

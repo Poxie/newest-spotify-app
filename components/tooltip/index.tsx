@@ -16,7 +16,6 @@ export default function Tooltip({
         <div 
             className={className} 
             data-tooltip-content={content}
-            aria-label={content}
         >
             {children}
         </div>
