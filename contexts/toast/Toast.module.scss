@@ -1,5 +1,6 @@
 .container {
     position: fixed;
+    z-index: 10000000;
     bottom: var(--spacing-secondary);
     left: 50%;
     transform: translateX(-50%);
