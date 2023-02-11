@@ -65,7 +65,7 @@ export const ProfileTop: React.FC<{
             {/* Showing loading skeletons */}
             {!items && (
                 Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
-                    <div className={styles['top-item']}>
+                    <div className={styles['top-item']} key={key}>
                         <div className={styles['item-image']} />
                         <div className={styles['top-item-text-loading']} />
                     </div>

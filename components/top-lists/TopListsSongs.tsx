@@ -14,7 +14,7 @@ export const TopListsSongs = () => {
         return(
             <div className={styles['header-tracks']}>
                 {Array.from(Array(4)).map((_,key) => (
-                    <Player loading />
+                    <Player loading key={key} />
                 ))}
             </div>
         )

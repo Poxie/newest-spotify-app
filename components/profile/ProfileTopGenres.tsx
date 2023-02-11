@@ -86,7 +86,7 @@ export const ProfileTopGenres = () => {
 
                 {!genres && (
                     Array.from(Array(PLACEHOLDER_COUNT)).map((_,key) => (
-                        <div className={styles['genre']}>
+                        <div className={styles['genre']} key={key}>
                             <div className={styles['genre-text-loading-container']}>
                                 <div className={styles['genre-text-loading']} />
                             </div>
