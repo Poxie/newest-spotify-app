@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { Player } from "../player";
 import Image from 'next/image';
 
-const PLACEHOLDER_COUNT = 12;
+const PLACEHOLDER_COUNT = 8;
 export const ExploreSongsResults = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
