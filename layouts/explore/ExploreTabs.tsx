@@ -5,7 +5,7 @@ import styles from './ExploreLayout.module.scss';
 const tabs = ['Songs', 'Artists'];
 export const ExploreTabs = () => {
     const router = useRouter();
-    const [activeTab, setActiveTab] = useState(tabs[0]);
+    const [activeTab, setActiveTab] = useState(tabs.find(tab => router.pathname.includes(tab.toLocaleLowerCase())) || tabs[0]);
     const tabIndex = tabs.indexOf(activeTab);
     const stripe = useRef<HTMLDivElement>(null);
 
