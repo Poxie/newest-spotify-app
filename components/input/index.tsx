@@ -1,7 +1,7 @@
-import React, { HTMLInputTypeAttribute, useEffect, useRef, useState } from 'react';
+import React, { HTMLInputTypeAttribute, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import styles from './Input.module.scss';
 
-export const Input: React.FC<{
+type InputProps = {
     focusOnMount?: boolean;
     containerClassName?: string;
     inputClassName?: string;
@@ -9,24 +9,17 @@ export const Input: React.FC<{
     onSubmit?: (value: string) => void;
     onFocus?: () => void;
     onBlur?: () => void;
-    value?: string;
     name?: string;
     label?: string;
     type?: HTMLInputTypeAttribute;
     textArea?: boolean;
-}> = ({ focusOnMount, containerClassName, inputClassName, onChange, onSubmit, onFocus, onBlur, name, label, textArea=false, type='text', value: _value }) => {
-    const [value, setValue] = useState(_value || '');
-    const ref = useRef<any>(null);
-
-    // Set value change, update input value
-    useEffect(() => {
-        if(!_value) return;
-        setValue(_value)
-    }, [_value]);
+}
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ focusOnMount, containerClassName, inputClassName, onChange, onSubmit, onFocus, onBlur, name, label, textArea=false, type='text' }, ref) => {
+    const inputRef = useRef<any>(null);
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
     // Handling change
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setValue(e.currentTarget.value);
         onChange && onChange(e.currentTarget.value);
     }
     // Handling keypress
@@ -38,7 +31,7 @@ export const Input: React.FC<{
     // Focusing on mount
     useEffect(() => {
         if(focusOnMount) {
-            ref.current?.focus();
+            inputRef.current?.focus();
         }
     }, [focusOnMount]);
 
@@ -50,11 +43,10 @@ export const Input: React.FC<{
         className: inputClassName,
         onFocus: onFocus,
         onBlur: onBlur,
-        value,
         name,
         id: name,
         required: true,
-        ref
+        ref: inputRef
     }
 
     containerClassName = [
@@ -83,4 +75,4 @@ export const Input: React.FC<{
             )}
         </div>
     )
-}
+})
