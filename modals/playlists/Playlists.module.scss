@@ -36,6 +36,12 @@
     object-fit: cover;
     margin-bottom: var(--spacing-tertiary);
     background-color: var(--background-quaternary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: var(--text-secondary);
+    font-weight: 800;
 }
 .item-name {
     font-size: 12px;

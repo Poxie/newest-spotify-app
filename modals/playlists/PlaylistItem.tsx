@@ -41,6 +41,7 @@ export const PlaylistItem: React.FC<{
                         fill
                     />
                 )}
+                {!image && '?'}
             </div>
             <span className={styles['item-name']}>
                 {name}
