@@ -1,20 +1,20 @@
 import styles from '../../styles/Explore.module.scss';
 import { selectArtistInfoAlbums, selectArtistInfoTracks } from "@/redux/explore/selectors"
 import { useAppSelector } from "@/redux/store"
-import { ExploreArtistItemList } from "./ExploreArtistItemList";
+import { ArtistItemList } from './ArtistItemList';
 
-export const ExploreArtistItems = () => {
+export const ArtistItems = () => {
     const tracks = useAppSelector(selectArtistInfoTracks);
     const albums = useAppSelector(selectArtistInfoAlbums);
     
     return(
         <div className={styles['artist-items']}>
-            <ExploreArtistItemList 
+            <ArtistItemList 
                 header={'Top tracks'}
                 items={tracks}
                 numbered
             />
-            <ExploreArtistItemList 
+            <ArtistItemList 
                 header={'Albums'}
                 items={albums}
             />

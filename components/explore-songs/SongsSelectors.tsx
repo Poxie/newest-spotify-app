@@ -4,9 +4,9 @@ import { selectExploreArtist, selectExploreSong } from "@/redux/explore/selector
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Artist, Track } from "@/types";
 import { SearchInput } from "../search-input"
-import { ExploreSongsPreview } from "./ExploreSongsPreview";
+import { SongsPreview } from "./SongsPreview";
 
-export const ExploreSongsSelectors = () => {
+export const SongsSelectors = () => {
     const dispatch = useAppDispatch();
     
     const song = useAppSelector(selectExploreSong);
@@ -18,7 +18,7 @@ export const ExploreSongsSelectors = () => {
     return(
         <div className={styles['selectors']}>
             <div className={styles['selector']}>
-                <ExploreSongsPreview 
+                <SongsPreview 
                     image={song?.album?.images[1]?.url}
                     textPrimary={song?.name}
                     textSecondary={song?.artists.map(artist => artist.name).join(', ')}
@@ -30,7 +30,7 @@ export const ExploreSongsSelectors = () => {
                 />
             </div>
             <div className={styles['selector']}>
-                <ExploreSongsPreview 
+                <SongsPreview 
                     image={artist?.images[1]?.url}
                     textPrimary={artist?.name}
                     textSecondary={`${artist?.followers?.total?.toLocaleString()} followers`}

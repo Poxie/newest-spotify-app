@@ -1,10 +1,10 @@
 import styles from '../../styles/Explore.module.scss';
 import { selectArtistInfoRelatedArtists } from "@/redux/explore/selectors"
 import { useAppSelector } from "@/redux/store"
-import { ExploreArtistInfoCard } from "./ExploreArtistInfoCard";
+import { ArtistInfoCard } from './ArtistInfoCard';
 
 const PLACEHOLDER_AMOUNT = 4;
-export const ExploreArtistsRelated = () => {
+export const ArtistsRelated = () => {
     let artists = useAppSelector(selectArtistInfoRelatedArtists);
 
     if(!artists) {
@@ -19,7 +19,7 @@ export const ExploreArtistsRelated = () => {
 
             <div className={styles['related-artists']}>
                 {artists?.slice(0,4)?.map((artist, key) => (
-                    <ExploreArtistInfoCard 
+                    <ArtistInfoCard 
                         artist={artist}
                         small={true}
                         key={artist?.id || key}

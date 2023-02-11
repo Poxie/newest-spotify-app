@@ -1,9 +1,9 @@
 import styles from '../../styles/Explore.module.scss';
 import { Album, Track } from "@/types";
-import { ExploreArtistListItem } from './ExploreArtistListItem';
+import { ArtistListItem } from './ArtistListItem';
 
 const PLACEHOLDER_AMOUNT = 10;
-export const ExploreArtistItemList: React.FC<{
+export const ArtistItemList: React.FC<{
     numbered?: boolean;
     items?: Album[] | Track[];
     header: string;
@@ -18,7 +18,7 @@ export const ExploreArtistItemList: React.FC<{
             </span>
             <ul className={styles['item-list']}>
                 {items?.map((item, key) => (
-                    <ExploreArtistListItem 
+                    <ArtistListItem 
                         item={item}
                         numbered={numbered}
                         index={key + 1}

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const LARGE_IMAGE_SIZE = 150;
 const SMALL_IMAGE_SIZE = 80;
-export const ExploreArtistInfoCard: React.FC<{
+export const ArtistInfoCard: React.FC<{
     track?: Track;
     artist?: Artist;
     small?: boolean;

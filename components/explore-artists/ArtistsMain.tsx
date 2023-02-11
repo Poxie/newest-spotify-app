@@ -1,18 +1,18 @@
 import styles from '../../styles/Explore.module.scss';
 import { selectArtistInfoArtist, selectArtistInfoTopTrack } from "@/redux/explore/selectors"
 import { useAppSelector } from "@/redux/store"
-import { ExploreArtistInfoCard } from "./ExploreArtistInfoCard";
+import { ArtistInfoCard } from './ArtistInfoCard';
 
-export const ExploreArtistsMain = () => {
+export const ArtistsMain = () => {
     const artist = useAppSelector(selectArtistInfoArtist);
     const topTrack = useAppSelector(selectArtistInfoTopTrack);
 
     return(
         <div className={styles['artists-main']}>
-            <ExploreArtistInfoCard 
+            <ArtistInfoCard 
                 artist={artist}
             />
-            <ExploreArtistInfoCard 
+            <ArtistInfoCard 
                 track={topTrack}
             />
         </div>

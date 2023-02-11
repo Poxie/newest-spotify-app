@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/redux/store";
 import { Artist } from "@/types"
 import { SearchInput } from "../search-input"
 
-export const ExploreArtistsSelector = () => {
+export const ArtistsSelector = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
 

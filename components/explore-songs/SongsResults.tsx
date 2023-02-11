@@ -9,7 +9,7 @@ import { Player } from "../player";
 import Image from 'next/image';
 
 const PLACEHOLDER_COUNT = 8;
-export const ExploreSongsResults = () => {
+export const SongsResults = () => {
     const { get } = useAuth();
     const dispatch = useAppDispatch();
     const song = useAppSelector(selectExploreSong);

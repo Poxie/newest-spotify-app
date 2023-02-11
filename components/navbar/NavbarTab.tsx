@@ -5,10 +5,11 @@ import { useRouter } from "next/router";
 export const NavbarTab: React.FC<{
     path: string;
     text: string;
-}> = ({ text, path }) => {
+    activePaths?: string[];
+}> = ({ text, path, activePaths }) => {
     const router = useRouter();
 
-    const active = router.pathname === path;
+    const active = router.pathname === path || activePaths?.includes(router.pathname);
     return(
         <li>
             <Link 

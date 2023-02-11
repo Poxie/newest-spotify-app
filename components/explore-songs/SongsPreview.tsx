@@ -1,7 +1,7 @@
 import styles from '../../styles/Explore.module.scss';
 import Image from "next/image";
 
-export const ExploreSongsPreview: React.FC<{
+export const SongsPreview: React.FC<{
     loading?: boolean;
     image?: string;
     textPrimary?: string;

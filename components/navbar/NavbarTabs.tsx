@@ -3,7 +3,7 @@ import { NavbarTab } from "./NavbarTab"
 
 const TABS = [
     { text: 'Top lists', path: '/top-lists' },
-    { text: 'Explore', path: '/explore' },
+    { text: 'Explore', path: '/explore/songs', activePaths: ['/explore/songs', '/explore/artists'] },
     { text: 'Profile', path: '/profile' }
 ]
 export const NavbarTabs = () => {

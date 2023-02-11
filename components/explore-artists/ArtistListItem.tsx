@@ -6,7 +6,7 @@ const getItemImage = (item: Album | Track) => {
     const image = (item as Track).album?.images[1]?.url || (item as Album).images[1]?.url;
     return image;
 }
-export const ExploreArtistListItem: React.FC<{
+export const ArtistListItem: React.FC<{
     item?: Album | Track;
     numbered?: boolean;
     index: number;
