@@ -44,11 +44,13 @@ export const HomeContact = () => {
                 </h2>
                 <form onSubmit={sendMessage}>
                     <Input 
-                        label="Email or name" 
+                        name="email"
+                        label="Email or name"
                         containerClassName={styles['contact-input']}
                         ref={email}
                     />
-                    <Input 
+                    <Input
+                        name="message"
                         label="Message"
                         textArea
                         ref={message}
