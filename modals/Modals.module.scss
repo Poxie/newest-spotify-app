@@ -55,7 +55,9 @@
 .footer {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     margin-top: var(--spacing-secondary);
+    flex: 1;
 }
 
 @media (max-width: 500px) {
