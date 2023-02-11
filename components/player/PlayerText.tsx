@@ -25,3 +25,4 @@ export const PlayerText: React.FC<{
         </div>
     )
 });
+PlayerText.displayName = 'PlayerText';
